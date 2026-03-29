@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Experiences | Premium Tech Showcase</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- BEGIN: Custom Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandCyan: '#00f2ff',
+            darkGlass: '#111111',
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- END: Custom Configuration -->
+<!-- BEGIN: Layout Styles -->
+<style data-purpose="layout">
+    body {
+      background-color: #000000;
+      margin: 0;
+      overflow-x: hidden;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Cinematic Depth Background Elements */
+    .background-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .light-streak {
+      position: absolute;
+      width: 2px;
+      height: 100vh;
+      background: linear-gradient(to bottom, transparent, rgba(0, 242, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      filter: blur(4px);
+    }
+
+    /* Particle Animation Simulation */
+    .particle {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float-particle linear infinite;
+    }
+
+    @keyframes float-particle {
+      from { transform: translateY(0); }
+      to { transform: translateY(-100vh); }
+    }
+  </style>
+<!-- END: Layout Styles -->
+<!-- BEGIN: Card Mechanics -->
+<style data-purpose="3d-cards">
+    .card-container {
+      perspective: 1500px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      text-align: center;
+      transition: transform 1s ease-in-out;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .card-container:hover .card-inner {
+      transform: rotateY(180deg) scale(1.05);
+      box-shadow: 0 0 40px rgba(0, 242, 255, 0.4);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .card-front {
+      background: #111111;
+      background: linear-gradient(135deg, #111111 0%, #050505 100%);
+    }
+
+    .card-back {
+      background: #0a0a0a;
+      transform: rotateY(180deg);
+      border-color: rgba(0, 242, 255, 0.3);
+    }
+
+    .accent-line {
+      width: 40px;
+      height: 3px;
+      background-color: #00f2ff;
+      margin-top: 1.5rem;
+      transition: width 0.3s ease;
+    }
+
+    .card-container:hover .accent-line {
+      width: 80px;
+    }
+
+    .glass-card {
+      background: rgba(17, 17, 17, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+    }
+  </style>
+<!-- END: Card Mechanics -->
+</head>
+<body class="text-white selection:bg-brandCyan/30">
+<!-- END: Background Layer -->
+<!-- BEGIN: Main Content -->
+<main class="relative z-10 py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+<!-- BEGIN: Header Section -->
+<header class="text-center mb-12" data-purpose="section-header">
+<h1 class="text-5xl md:text-7xl font-black tracking-tighter uppercase mb-4 animate-pulse-slow">
+        Digital Experiences
+      </h1>
+<div class="h-1 w-24 bg-brandCyan mx-auto opacity-80"></div>
+</header>
+<!-- END: Header Section -->
+<!-- BEGIN: Services Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10" data-purpose="services-grid">
+<!-- Card 1 -->
+<div class="card-container animate-float" style="animation-delay: 0s;">
+<div class="card-inner">
+<div class="card-front" data-purpose="card-front-content">
+<h2 class="text-2xl font-bold mb-4">Web Development &amp; Database Programming</h2>
+<p class="text-gray-400 text-sm leading-relaxed">High-performance architecture built for scalability and speed.</p>
+<div class="accent-line"></div>
+</div>
+<div class="card-back" data-purpose="card-back-content">
+<h3 class="text-brandCyan font-mono text-sm mb-6 uppercase tracking-widest">Tech Stack</h3>
+<ul class="space-y-3 text-lg font-medium">
+<li>Python</li>
+<li>Java</li>
+<li class="text-brandCyan">Vibe Coding</li>
+<li>SQL</li>
+<li>Firebase</li>
+<li>Node.js</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="card-container animate-float" style="animation-delay: 0.5s;">
+<div class="card-inner">
+<div class="card-front">
+<h2 class="text-2xl font-bold mb-4">Sales Funnels &amp; Landing Page Engineering</h2>
+<p class="text-gray-400 text-sm leading-relaxed">Optimized conversion paths designed to turn visitors into customers.</p>
+<div class="accent-line"></div>
+</div>
+<div class="card-back">
+<h3 class="text-brandCyan font-mono text-sm mb-6 uppercase tracking-widest">Platforms</h3>
+<ul class="space-y-3 text-lg font-medium">
+<li class="text-brandCyan">GoHighLevel</li>
+<li>Kajabi</li>
+<li>Systeme.io</li>
+<li>ClickFunnels</li>
+<li>Wix</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="card-container animate-float" style="animation-delay: 1s;">
+<div class="card-inner">
+<div class="card-front">
+<h2 class="text-2xl font-bold mb-4">Automation &amp; CRM Systems</h2>
+<p class="text-gray-400 text-sm leading-relaxed">Streamline your operations with intelligent workflow management.</p>
+<div class="accent-line"></div>
+</div>
+<div class="card-back">
+<h3 class="text-brandCyan font-mono text-sm mb-6 uppercase tracking-widest">Integration</h3>
+<ul class="space-y-3 text-lg font-medium">
+<li>HubSpot</li>
+<li>Salesforce</li>
+<li>Zoho CRM</li>
+<li>Airtable</li>
+<li class="text-brandCyan">Zapier</li>
+<li class="text-brandCyan">Make</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="card-container animate-float" style="animation-delay: 1.5s;">
+<div class="card-inner">
+<div class="card-front">
+<h2 class="text-2xl font-bold mb-4">AI Solutions &amp; Chatbots</h2>
+<p class="text-gray-400 text-sm leading-relaxed">Next-generation artificial intelligence for seamless automation.</p>
+<div class="accent-line"></div>
+</div>
+<div class="card-back">
+<h3 class="text-brandCyan font-mono text-sm mb-6 uppercase tracking-widest">AI Tools</h3>
+<ul class="space-y-3 text-lg font-medium">
+<li class="text-brandCyan">GPT-4 API</li>
+<li>Dialogflow</li>
+<li>ManyChat</li>
+<li>Twilio</li>
+<li>OpenAI</li>
+<li class="text-brandCyan">LangChain</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="card-container animate-float" style="animation-delay: 2s;">
+<div class="card-inner">
+<div class="card-front">
+<h2 class="text-2xl font-bold mb-4">B2B Lead Generation</h2>
+<p class="text-gray-400 text-sm leading-relaxed">Data-driven strategies to find and connect with your ideal clients.</p>
+<div class="accent-line"></div>
+</div>
+<div class="card-back">
+<h3 class="text-brandCyan font-mono text-sm mb-6 uppercase tracking-widest">Prospecting</h3>
+<ul class="space-y-3 text-lg font-medium">
+<li class="text-brandCyan">LinkedIn Sales Nav</li>
+<li class="text-brandCyan">Apollo</li>
+<li>Phantombuster</li>
+<li>Hunter.io</li>
+<li>Skrapp</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="card-container animate-float" style="animation-delay: 2.5s;">
+<div class="card-inner">
+<div class="card-front">
+<h2 class="text-2xl font-bold mb-4">Social Media Management</h2>
+<p class="text-gray-400 text-sm leading-relaxed">Building digital presence through strategic content and engagement.</p>
+<div class="accent-line"></div>
+</div>
+<div class="card-back">
+<h3 class="text-brandCyan font-mono text-sm mb-6 uppercase tracking-widest">Management</h3>
+<ul class="space-y-3 text-lg font-medium">
+<li>Meta Business Suite</li>
+<li>Buffer</li>
+<li>Hootsuite</li>
+<li class="text-brandCyan">Canva</li>
+<li>Later</li>
+<li class="text-brandCyan">CapCut</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Card 7 - Centered on bottom for desktop if possible -->
+<div class="card-container animate-float" style="animation-delay: 3s;">
+<div class="card-inner">
+<div class="card-front">
+<h2 class="text-2xl font-bold mb-4">CMS Design &amp; Development</h2>
+<p class="text-gray-400 text-sm leading-relaxed">Flexible, user-friendly content management systems for any business.</p>
+<div class="accent-line"></div>
+</div>
+<div class="card-back">
+<h3 class="text-brandCyan font-mono text-sm mb-6 uppercase tracking-widest">CMS Expertise</h3>
+<ul class="space-y-3 text-lg font-medium">
+<li class="text-brandCyan">WordPress</li>
+<li class="text-brandCyan">Webflow</li>
+<li>Joomla</li>
+<li>Drupal</li>
+<li>Wix CMS</li>
+<li>Shopify CMS</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Card 8 - Static Metric Card -->
+<div class="animate-float" style="animation-delay: 3.5s;">
+<div class="glass-card border-brandCyan/20">
+<div class="space-y-10">
+<div>
+<div class="text-4xl font-black text-brandCyan mb-2">250+</div>
+<div class="text-gray-400 uppercase tracking-widest text-xs font-bold">Projects Delivered</div>
+</div>
+<div class="h-px w-12 bg-white/10 mx-auto"></div>
+<div>
+<div class="text-4xl font-black text-brandCyan mb-2">8+ Years</div>
+<div class="text-gray-400 uppercase tracking-widest text-xs font-bold">Global Experience</div>
+</div>
+</div>
+<div class="accent-line"></div>
+</div>
+</div>
+</section>
+<!-- END: Services Grid -->
+</main>
+<!-- END: Main Content -->
+<!-- END: Interactive Scripts -->
+</body></html>
+</body></html>

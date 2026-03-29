@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Premium Digital Portfolio Section</title>
+<!-- Inter Font for a premium geometric sans-serif feel -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with forms and container-queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- BEGIN: Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brandBlack: '#000000',
+            brandGlass: '#111111',
+            brandGray: '#BFBFBF',
+          }
+        }
+      }
+    }
+  </script>
+<!-- END: Tailwind Configuration -->
+<!-- BEGIN: Layout Styles -->
+<style data-purpose="layout-and-effects">
+    body {
+      background-color: #000000;
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    /* Particle Background Container */
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }    /* Glass Card Styling */
+    .glass-card {
+      background: rgba(17, 17, 17, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Headline Typography Styling */
+    .headline-main {
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+    }
+
+    /* Custom content layer to stay above particles */
+    .content-layer {
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+<!-- END: Layout Styles -->
+</head>
+<body class="font-sans text-white">
+<!-- BEGIN: Particle Background -->
+<canvas data-purpose="animated-background" id="particles-js"></canvas>
+<!-- END: Particle Background -->
+<!-- BEGIN: Hero Section -->
+<main class="content-layer min-h-screen flex flex-col items-center justify-center px-6 py-12 overflow-hidden">
+<!-- BEGIN: Main Heading -->
+<section class="max-w-5xl w-full text-center mb-12" data-purpose="hero-header">
+<h1 class="headline-main text-5xl md:text-7xl lg:text-8xl font-black mb-8">
+        Digital Systems <br/> That Turn Visitors <br/> Into Clients
+      </h1>
+</section>
+<!-- END: Main Heading -->
+<!-- BEGIN: Services Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl w-full" data-purpose="services-panels">
+<!-- Panel 1: Web Design -->
+<article class="glass-card p-10 rounded-2xl flex flex-col justify-between h-80 cursor-default" data-purpose="service-panel" id="card-1">
+<div>
+<h2 class="text-2xl font-bold mb-4">Web Design</h2>
+<p class="text-brandGray leading-relaxed">
+            High-converting websites and landing pages engineered for maximum impact.
+          </p>
+</div>
+<div class="mt-4 flex items-center gap-2 opacity-50">
+<div class="w-8 h-[1px] bg-white"></div>
+<span class="text-xs uppercase tracking-widest">01</span>
+</div>
+</article>
+<!-- Panel 2: Automation -->
+<article class="glass-card p-10 rounded-2xl flex flex-col justify-between h-80 cursor-default" data-purpose="service-panel" id="card-2">
+<div>
+<h2 class="text-2xl font-bold mb-4">Automation</h2>
+<p class="text-brandGray leading-relaxed">
+            Smart workflows that streamline business operations and eliminate manual friction.
+          </p>
+</div>
+<div class="mt-4 flex items-center gap-2 opacity-50">
+<div class="w-8 h-[1px] bg-white"></div>
+<span class="text-xs uppercase tracking-widest">02</span>
+</div>
+</article>
+<!-- Panel 3: AI Solutions -->
+<article class="glass-card p-10 rounded-2xl flex flex-col justify-between h-80 cursor-default" data-purpose="service-panel" id="card-3">
+<div>
+<h2 class="text-2xl font-bold mb-4">AI Solutions</h2>
+<p class="text-brandGray leading-relaxed">
+            Intelligent tools that improve customer engagement through conversational technology.
+          </p>
+</div>
+<div class="mt-4 flex items-center gap-2 opacity-50">
+<div class="w-8 h-[1px] bg-white"></div>
+<span class="text-xs uppercase tracking-widest">03</span>
+</div>
+</article>
+</section>
+<!-- END: Services Grid -->
+</main>
+<!-- END: Hero Section -->
+<!-- BEGIN: Interactive Logic -->
+<script data-purpose="particle-animation">
+    /**
+     * Subtle Particle Background Logic
+     */
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.5;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.5;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      resize();
+      particles = [];
+      for (let i = 0; i < 80; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    animate();
+  </script>
+</body></html><!-- MISSING_IMAGES:
+- No external images were used as per the requirement for a minimal black and white palette. All elements are generated with CSS and HTML.
+-->

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Futuristic Footer Component</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- BEGIN: Custom Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-black': '#000000',
+            'brand-gray': '#888888',
+          },
+          animation: {
+            'fade-slide-up': 'fadeSlideUp 1s ease-out forwards',
+          },
+          keyframes: {
+            fadeSlideUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- END: Custom Configuration -->
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="animations">
+    /* Underline sliding animation for navigation links */
+    .nav-link {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: white;
+      transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Social links scaling */
+    .social-link {
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+    }
+
+    .social-link:hover {
+      transform: scale(1.1);
+      color: #ffffff;
+    }
+
+    /* General reveal animation applied to the whole footer */
+    .reveal-footer {
+      animation: fadeSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+<style data-purpose="typography">
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0a0a; /* Dark background to see the footer effect */
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="min-h-screen flex flex-col justify-end">
+<!-- BEGIN: Footer Section -->
+<footer class="bg-brand-black text-white pt-12 pb-10 px-6 md:px-12 lg:px-24 reveal-footer border-t border-white/5" data-purpose="main-footer">
+<div class="max-w-7xl mx-auto">
+<!-- Top Content Wrapper -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">
+<!-- BEGIN: Brand Column -->
+<div class="flex flex-col space-y-2" data-purpose="footer-brand">
+<h2 class="text-2xl font-bold tracking-tighter uppercase">Abdussalam Ahmad</h2>
+<p class="text-brand-gray text-sm tracking-widest font-light uppercase">Digital Systems &amp; Automation</p>
+</div>
+<!-- END: Brand Column -->
+<!-- BEGIN: Navigation Column -->
+<nav class="flex flex-col space-y-4" data-purpose="footer-nav">
+<h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Navigation</h3>
+<ul class="flex flex-col space-y-3">
+<li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="#">Home</a></li>
+<li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="#">About</a></li>
+<li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="#">Portfolio</a></li>
+<li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="#">Services</a></li>
+<li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="#">Contact</a></li>
+</ul>
+</nav>
+<!-- END: Navigation Column -->
+<!-- BEGIN: Social Column -->
+<div class="flex flex-col space-y-4 md:items-end" data-purpose="footer-social">
+<h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Connect</h3>
+<ul class="flex flex-col space-y-3 md:items-end">
+<li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">LinkedIn</a></li>
+<li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">Twitter / X</a></li>
+<li><a class="social-link text-sm font-light text-brand-gray inline-block" href="mailto:contact@example.com">Email</a></li>
+</ul>
+</div>
+<!-- END: Social Column -->
+</div>
+<!-- BEGIN: Bottom Copyright Area -->
+<div class="pt-8 border-t border-white/10" data-purpose="footer-bottom">
+<div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-[10px] tracking-widest text-brand-gray uppercase">
+<p>© 2026 Abdussalam Ahmad — All rights reserved.</p>
+<div class="flex space-x-6">
+<span>Privacy Policy</span>
+<span>Terms of Service</span>
+</div>
+</div>
+</div>
+<!-- END: Bottom Copyright Area -->
+</div>
+</footer>
+<!-- END: Footer Section -->
+</body></html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How It Happens - Futuristic Workflow</title>
+<!-- Tailwind CSS with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Font Setup: Inter for modern look -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="custom-animations">
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+
+    @keyframes scanline {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .animate-float-delayed {
+      animation: float 4s ease-in-out infinite;
+      animation-delay: 1.5s;
+    }
+
+    .animate-float-extra-delayed {
+      animation: float 4s ease-in-out infinite;
+      animation-delay: 2.5s;
+    }
+
+    .particle-trail {
+      background: linear-gradient(90deg, transparent, #00FFFF, transparent);
+      height: 1px;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      opacity: 0.3;
+      box-shadow: 0 0 15px 1px #00FFFF;
+    }
+
+    .keyword-node {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .keyword-node:hover {
+      color: #00FFFF;
+      text-shadow: 0 0 20px #00FFFF, 0 0 40px #00FFFF;
+      transform: scale(1.1);
+    }
+
+    .bg-black-obsidian {
+      background-color: #000000;
+    }
+  </style>
+<style data-purpose="typography">
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    .text-outline {
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+      color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-black-obsidian text-white">
+<!-- BEGIN: ExecutionFlowSection -->
+<div class="absolute inset-0 z-0" data-purpose="background-layers">
+<!-- Gradient Radial Glows -->
+<!-- Gradient Radial Glows -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-cyan-900/10 blur-[120px] rounded-full pointer-events-none"></div>
+</div>
+<!-- BEGIN: Header -->
+<header class="relative z-10 mb-12 text-center">
+<span class="block text-cyan-400 text-xs tracking-[0.5em] uppercase mb-4 opacity-70">Process</span>
+<h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-2">
+        How It Happens
+      </h2>
+<div class="w-24 h-1 bg-cyan-500 mx-auto mt-6 rounded-full shadow-[0_0_15px_rgba(0,255,255,0.8)]"></div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: FlowContainer -->
+<div class="relative z-10 w-full max-w-6xl mx-auto py-12" data-purpose="flow-visualization">
+<!-- Horizontal Flow Line -->
+<div class="relative w-full">
+<div class="particle-trail"></div>
+<!-- Animated Scan-over -->
+<div class="absolute top-1/2 left-0 h-px w-32 bg-cyan-300 blur-sm -translate-y-1/2 overflow-hidden">
+<div class="absolute inset-0 animate-[scanline_3s_linear_infinite] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+</div>
+</div>
+<!-- Keywords Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-[-10px] relative">
+<!-- Step 1: Plan -->
+<div class="flex flex-col items-center group cursor-default">
+<div class="keyword-node animate-float flex flex-col items-center">
+<div class="w-3 h-3 bg-cyan-500 rounded-full mb-8 shadow-[0_0_10px_#00FFFF]"></div>
+<span class="text-3xl md:text-5xl font-bold tracking-tight">Plan</span>
+<p class="mt-4 text-white/40 text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300">Strategy &amp; Architecture</p>
+</div>
+</div>
+<!-- Step 2: Build -->
+<div class="flex flex-col items-center group cursor-default">
+<div class="keyword-node animate-float-delayed flex flex-col items-center">
+<div class="w-3 h-3 bg-cyan-500 rounded-full mb-8 shadow-[0_0_10px_#00FFFF]"></div>
+<span class="text-3xl md:text-5xl font-bold tracking-tight">Build</span>
+<p class="mt-4 text-white/40 text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300">Clean Code &amp; Excellence</p>
+</div>
+</div>
+<!-- Step 3: Launch -->
+<div class="flex flex-col items-center group cursor-default">
+<div class="keyword-node animate-float-extra-delayed flex flex-col items-center">
+<div class="w-3 h-3 bg-cyan-500 rounded-full mb-8 shadow-[0_0_10px_#00FFFF]"></div>
+<span class="text-3xl md:text-5xl font-bold tracking-tight">Launch</span>
+<p class="mt-4 text-white/40 text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300">Scale &amp; Performance</p>
+</div>
+</div>
+</div>
+</div>
+<!-- END: FlowContainer -->
+<!-- Footer Decoration -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-4 opacity-20 hover:opacity-100 transition-opacity duration-500 cursor-crosshair">
+<div class="h-[1px] w-20 bg-white"></div>
+<span class="text-[10px] tracking-[0.3em] uppercase">Cinematic Sequence</span>
+<div class="h-[1px] w-20 bg-white"></div>
+</div>
+</body></html>

@@ -1,0 +1,509 @@
+﻿/* Performance: GPU acceleration for canvas layers */
+#particles-js-1, #particle-canvas-0, #particle-canvas-2 {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  will-change: transform;
+}
+
+/* Reduced motion: disable animations for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  canvas { display: none; }
+  .carousel-track { animation-duration: 60s; }
+}
+
+.section-0, .section-0 {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      overflow-x: hidden;
+      width: 100%;
+      height: 100%;
+    }
+    /* Creates the immersive black void effect */
+    .hero-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    /* Subtle silver accent glow in the corners */
+    .corner-glow {
+      position: absolute;
+      width: 40vw;
+      height: 40vw;
+      background: radial-gradient(circle, rgba(192, 192, 192, 0.05) 0%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+    }
+
+#particle-canvas-0 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+.headline-gradient {
+      background: linear-gradient(180deg, #FFFFFF 0%, #C0C0C0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .cta-button {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #00FFFF;
+      filter: brightness(1.1);
+    }
+
+.nav-glass {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 1px;
+      background: white;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .nav-link:hover {
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+    .nav-cta-outline {
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+    .nav-cta-outline:hover {
+      background: white;
+      color: black;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      border-color: white;
+    }
+
+.logo-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 32px;
+      width: 200px; /* Fixed width to prevent layout shift */
+      cursor: pointer;
+    }
+    .logo-text, .logo-signature {
+      position: absolute;
+      left: 0;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    .logo-signature {
+      height: 32px;
+      opacity: 0;
+      transform: translateY(5px) scale(1);
+      transform-origin: left center;
+      filter: brightness(0) invert(1); /* Forces image to white */
+      pointer-events: none;
+    }
+    .logo-container:hover .logo-text {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    .logo-container:hover .logo-signature {
+      opacity: 1;
+      transform: translateY(0) scale(2.2);
+    }
+
+.section-1 {
+      background-color: #000000;
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    /* Particle Background Container */
+    #particles-js-1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    /* Perspective for 3D Floating Panels */
+    .perspective-container-1 {
+      perspective: 1000px;
+    }
+
+    /* Glass Card Styling */
+    .glass-card-1 {
+      background: rgba(17, 17, 17, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+    }
+
+    .glass-card-1:hover {
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Headline Typography Styling */
+    .headline-main-1 {
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+    }
+
+    /* Custom content layer to stay above particles */
+    .content-layer-1 {
+      position: relative;
+      z-index: 10;
+    }
+
+@keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .carousel-track {
+      display: flex;
+      width: max-content;
+      animation: scroll 40s linear infinite;
+    }
+
+    /* 3D Perspective Container */
+    .perspective-container-2 {
+      perspective: 1200px;
+      overflow: hidden;
+    }
+
+    /* Curvature Mask - Fades out edges to enhance 3D recede effect */
+    .mask-gradient {
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+
+    /* Logo Item Styling with 3D effects */
+    .logo-item {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: grayscale(1) brightness(2);
+      transform: translateZ(0);
+    }
+
+    .logo-item:hover {
+      transform: translateZ(100px) scale(1.2);
+      filter: grayscale(0) brightness(1) drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
+      z-index: 10;
+    }
+
+    /* Particle Canvas styling */
+    #particle-canvas-2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+.section-3 {
+      background-color: #000000;
+      margin: 0;
+      overflow-x: hidden;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Cinematic Depth Background Elements */
+    .background-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .light-streak {
+      position: absolute;
+      width: 2px;
+      height: 100vh;
+      background: linear-gradient(to bottom, transparent, rgba(0, 242, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      filter: blur(4px);
+    }
+
+    /* Particle Animation Simulation */
+    .particle {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float-3-particle linear infinite;
+    }
+
+    @keyframes float-3-particle {
+      from { transform: translateY(0); }
+      to { transform: translateY(-100vh); }
+    }
+
+.card-container-3 {
+      perspective: 1500px;
+    }
+
+    .card-inner-3 {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      text-align: center;
+      transition: transform 1s ease-in-out;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .card-container-3:hover .card-inner-3 {
+      transform: rotateY(180deg) scale(1.05);
+      box-shadow: 0 0 40px rgba(0, 242, 255, 0.4);
+    }
+
+    .card-front-3, .card-back-3 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .card-front-3 {
+      background: #111111;
+      background: linear-gradient(135deg, #111111 0%, #050505 100%);
+    }
+
+    .card-back-3 {
+      background: #0a0a0a;
+      transform: rotateY(180deg);
+      border-color: rgba(0, 242, 255, 0.3);
+    }
+
+    .accent-line {
+      width: 40px;
+      height: 3px;
+      background-color: #00f2ff;
+      margin-top: 1.5rem;
+      transition: width 0.3s ease;
+    }
+
+    .card-container-3:hover .accent-line {
+      width: 80px;
+    }
+
+    .glass-card-3 {
+      background: rgba(17, 17, 17, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+@keyframes float-4 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+
+    @keyframes scanline {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .animate-float-4-4 {
+      animation: float-4 4s ease-in-out infinite;
+    }
+
+    .animate-float-4-4-delayed {
+      animation: float-4 4s ease-in-out infinite;
+      animation-delay: 1.5s;
+    }
+
+    .animate-float-4-4-extra-delayed {
+      animation: float-4 4s ease-in-out infinite;
+      animation-delay: 2.5s;
+    }
+
+    .particle-trail {
+      background: linear-gradient(90deg, transparent, #00FFFF, transparent);
+      height: 1px;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      opacity: 0.3;
+      box-shadow: 0 0 15px 1px #00FFFF;
+    }
+
+    .keyword-node {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .keyword-node:hover {
+      color: #00FFFF;
+      text-shadow: 0 0 20px #00FFFF, 0 0 40px #00FFFF;
+      transform: scale(1.1);
+    }
+
+    .bg-black-obsidian {
+      background-color: #000000;
+    }
+
+.section-4 {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    .text-outline {
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+      color: transparent;
+    }
+
+@keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+    }
+
+    .log-line {
+      display: none;
+      animation: fadeSlideIn 0.4s ease-out forwards;
+    }
+
+    .log-line.active {
+      display: flex;
+    }
+
+    /* Glassmorphism subtle glow */
+    .terminal-glow {
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.05);
+    }
+
+.section-5 {
+      font-family: 'Fira Code', monospace;
+      background-color: #050505;
+    }
+    .neon-text {
+      color: #00ffaa;
+      text-shadow: 0 0 8px rgba(0, 255, 170, 0.4);
+    }
+    .accent-cyan {
+      color: #00d4ff;
+    }
+
+.gradient-bg {
+            background: linear-gradient(-45deg, #111111, #1a1a1a, #111111, #222222);
+            background-size: 400% 400%;
+        }
+        .btn-hover-arrow:hover span.arrow-icon {
+            transform: translateX(5px);
+        }
+
+/* Underline sliding animation for navigation links */
+    .nav-link {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: white;
+      transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Social links scaling */
+    .social-link {
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+    }
+
+    .social-link:hover {
+      transform: scale(1.1);
+      color: #ffffff;
+    }
+
+    /* General reveal animation applied to the whole footer */
+    .reveal-footer {
+      animation: fadeSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+    
+    .section-7 {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0a0a; /* Dark background to see the footer effect */
+    }

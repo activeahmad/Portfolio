@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Control Room - Futuristic Portfolio</title>
+  <!-- Tailwind CSS v3 with Plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Tailwind Custom Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neonCyan: '#00f3ff',
+            deepNavy: '#020617',
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'spin-slow': 'spin 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style data-purpose="custom-effects">
+    :root {
+      --mouse-x: 0deg;
+      --mouse-y: 0deg;
+    }
+
+    body {
+      margin: 0;
+      background-color: #020617;
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Cinematic Lighting & Fog Effect */
+    .fog-overlay {
+      background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(2, 6, 23, 0.8) 100%);
+      pointer-events: none;
+    }
+
+    /* 3D Scene Container */
+    .scene-container {
+      perspective: 1200px;
+      overflow: hidden;
+    }
+
+    .parallax-wrapper {
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
+      transform: rotateX(var(--mouse-y)) rotateY(var(--mouse-x));
+    }
+
+    /* Holographic Panel Effects */
+    .holo-panel {
+      background: rgba(0, 243, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 243, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .holo-panel:hover {
+      background: rgba(0, 243, 255, 0.15);
+      border-color: rgba(0, 243, 255, 0.5);
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+      transform: translateZ(20px) scale(1.05);
+    }
+
+    /* Energy Core Glow */
+    .energy-core {
+      background: radial-gradient(circle, rgba(0, 243, 255, 0.6) 0%, transparent 70%);
+      filter: blur(40px);
+    }
+
+    /* Particle Animation */
+    @keyframes particleDrift {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      to {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .particle {
+      position: absolute;
+      background: #00f3ff;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: particleDrift linear infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-deepNavy text-white">
+  <!-- BEGIN: ControlRoomSection -->
+  <section class="relative min-h-screen w-full flex items-center justify-center scene-container py-20 overflow-hidden"
+    id="control-room">
+    <!-- BEGIN: AtmosphericBackground -->
+    <div class="absolute inset-0 z-0">
+      <!-- Grid Floor -->
+      <div
+        class="absolute bottom-0 w-full h-1/2 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_100%,#000_70%,transparent_100%)] opacity-20">
+      </div>
+      <!-- Volumetric Fog / Glow -->
+      <div class="absolute inset-0 fog-overlay"></div>
+      <!-- Neon Beams -->
+      <div class="absolute top-0 left-1/4 w-1 h-full bg-neonCyan opacity-10 blur-xl"></div>
+      <div class="absolute top-0 right-1/4 w-1 h-full bg-neonCyan opacity-10 blur-xl"></div>
+      <!-- Particle Container -->
+      <div class="absolute inset-0" id="particle-container"></div>
+    </div>
+    <!-- END: AtmosphericBackground -->
+    <!-- BEGIN: ParallaxScene -->
+    <div class="parallax-wrapper relative z-10 w-full max-w-7xl flex items-center justify-center h-full min-h-[600px]">
+      <!-- BEGIN: CentralEnergyHub -->
+      <div class="relative flex items-center justify-center group" data-purpose="central-hub">
+        <!-- Energy Core Glow -->
+        <div class="energy-core absolute w-96 h-96 rounded-full animate-pulse-slow"></div>
+        <!-- Circular Rotating Rings -->
+        <div class="absolute w-[450px] h-[450px] border border-neonCyan/20 rounded-full animate-spin-slow"></div>
+        <div
+          class="absolute w-[500px] h-[500px] border border-dashed border-neonCyan/10 rounded-full animate-[spin_30s_linear_infinite_reverse]">
+        </div>
+        <!-- Main Console Slab -->
+        <div
+          class="relative z-20 p-12 rounded-2xl bg-black/40 border border-neonCyan/30 backdrop-blur-xl shadow-[0_0_50px_rgba(0,243,255,0.1)] text-center transform transition-transform duration-500 hover:scale-105"
+          data-purpose="interactive-console">
+          <h2 class="text-xs uppercase tracking-[0.5em] text-neonCyan mb-4 opacity-70">System Command</h2>
+          <h1
+            class="text-4xl md:text-6xl font-black tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400">
+            PORTFOLIO<br />ACCESS
+          </h1>
+          <button
+            class="px-10 py-4 bg-neonCyan/10 border border-neonCyan text-neonCyan font-bold tracking-widest hover:bg-neonCyan hover:text-deepNavy transition-all duration-300 animate-pulse-slow shadow-[0_0_15px_rgba(0,243,255,0.4)]"
+            data-purpose="cta-button">
+            CHECK OUT MY PORTFOLIO
+          </button>
+        </div>
+      </div>
+      <!-- END: CentralEnergyHub -->
+      <!-- BEGIN: OrbitingPanels -->
+      <!-- Panel: Web Design (Left) -->
+      <div
+        class="absolute transform -translate-x-[350px] -translate-y-32 holo-panel p-6 rounded-lg w-48 text-center cursor-pointer animate-float"
+        style="animation-delay: 0s;">
+        <div class="text-neonCyan mb-3">
+          <svg class="w-10 h-10 mx-auto" fill="none" stroke="currentColor" viewbox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+          </svg>
+        </div>
+        <h3 class="font-bold text-sm tracking-widest">WEB DESIGN</h3>
+        <div class="mt-4 flex flex-wrap gap-1 justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">UI/UX</span>
+          <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">WebGL</span>
+        </div>
+      </div>
+      <!-- Panel: AI Solutions (Right) -->
+      <div
+        class="absolute transform translate-x-[350px] -translate-y-10 holo-panel p-6 rounded-lg w-48 text-center cursor-pointer animate-float"
+        style="animation-delay: -2s;">
+        <div class="text-neonCyan mb-3">
+          <svg class="w-10 h-10 mx-auto" fill="none" stroke="currentColor" viewbox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+          </svg>
+        </div>
+        <h3 class="font-bold text-sm tracking-widest">AI SOLUTIONS</h3>
+        <div class="mt-4 flex flex-wrap gap-1 justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">LLMs</span>
+          <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">Neural Nets</span>
+        </div>
+      </div>
+      <!-- Panel: Automation (Bottom Right) -->
+      <div
+        class="absolute transform translate-x-[250px] translate-y-48 holo-panel p-6 rounded-lg w-48 text-center cursor-pointer animate-float"
+        style="animation-delay: -4s;">
+        <div class="text-neonCyan mb-3">
+          <svg class="w-10 h-10 mx-auto" fill="none" stroke="currentColor" viewbox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 011 1V4z"
+              stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+          </svg>
+        </div>
+        <h3 class="font-bold text-sm tracking-widest">AUTOMATION</h3>
+        <div class="mt-4 flex flex-wrap gap-1 justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">CI/CD</span>
+          <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">Scripts</span>
+        </div>
+      </div>
+      <!-- END: OrbitingPanels -->
+    </div>
+    <!-- END: ParallaxScene -->
+  </section>
+  <!-- END: ControlRoomSection -->
+  <!-- BEGIN: InteractiveScripts -->
+  <script data-purpose="parallax-logic">
+    // 3D Parallax Mouse Effect
+    const section = document.getElementById('control-room');
+    const wrapper = section.querySelector('.parallax-wrapper');
+
+    section.addEventListener('mousemove', (e) => {
+      const { width, height } = section.getBoundingClientRect();
+      const xVal = (e.clientX - width / 2) / 50;
+      const yVal = (e.clientY - height / 2) / 50;
+
+      // Update CSS variables for perspective shift
+      wrapper.style.setProperty('--mouse-x', `${xVal}deg`);
+      wrapper.style.setProperty('--mouse-y', `${-yVal}deg`);
+    });
+
+    // Reset perspective on mouse leave
+    section.addEventListener('mouseleave', () => {
+      wrapper.style.setProperty('--mouse-x', `0deg`);
+      wrapper.style.setProperty('--mouse-y', `0deg`);
+    });
+  </script>
+  <script data-purpose="particle-generator">
+    // Create drifting particles for the cinematic hangar atmosphere
+    const container = document.getElementById('particle-container');
+    const particleCount = 50;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+
+      const size = Math.random() * 3 + 1;
+      const posX = Math.random() * 100;
+      const posY = Math.random() * 100;
+      const delay = Math.random() * 10;
+      const duration = Math.random() * 10 + 10;
+
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${posX}%`;
+      particle.style.top = `${posY}%`;
+      particle.style.animationDelay = `-${delay}s`;
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.opacity = Math.random() * 0.5;
+
+      container.appendChild(particle);
+    }
+  </script>
+
+  <script data-purpose="entry-logic">
+    document.addEventListener('DOMContentLoaded', () => {
+      const ctaBtn = document.querySelector('[data-purpose="cta-button"]');
+      if (ctaBtn) {
+        ctaBtn.addEventListener('click', () => {
+          // Fade out the document body smoothly
+          document.body.style.transition = 'opacity 1s ease-in-out';
+          document.body.style.opacity = '0';
+
+          // Redirect after transition completes
+          setTimeout(() => {
+            window.location.href = 'home.html';
+          }, 1000);
+        });
+      }
+    });
+  </script>
+  <!-- END: InteractiveScripts -->
+</body>
+
+</html>

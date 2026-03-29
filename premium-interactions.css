@@ -1,0 +1,198 @@
+/**
+ * premium-interactions.css
+ * Additive-only hover micro-interactions, cursor styles, and animation tokens.
+ * Does NOT touch any existing layout, typography, or section structure.
+ */
+
+/* ─── Global Animation Tokens ─── */
+:root {
+  --ease-premium: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-bounce:  cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-snappy:  cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:   0.2s;
+  --dur-medium: 0.35s;
+  --dur-slow:   0.6s;
+}
+
+/* ─── Custom Cursor ─── */
+* { cursor: none !important; }
+
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 6px; height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  transform: translate(-50%, -50%);
+  transition: transform var(--dur-fast) var(--ease-snappy),
+              background var(--dur-medium) ease,
+              width var(--dur-medium) var(--ease-bounce),
+              height var(--dur-medium) var(--ease-bounce);
+  will-change: left, top;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(255,255,255,0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width var(--dur-medium) var(--ease-bounce),
+              height var(--dur-medium) var(--ease-bounce),
+              border-color var(--dur-medium) ease,
+              background var(--dur-medium) ease;
+  will-change: left, top;
+}
+
+/* Ring reacts to hoverable elements */
+body.cursor-hover .cursor-dot {
+  width: 10px; height: 10px;
+  background: #00FFFF;
+}
+body.cursor-hover .cursor-ring {
+  width: 52px; height: 52px;
+  border-color: rgba(0,255,255,0.5);
+  background: rgba(0,255,255,0.04);
+}
+
+/* ─── Button Micro-interactions ─── */
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+a.btn, .cta-button {
+  transition:
+    transform var(--dur-fast) var(--ease-bounce),
+    box-shadow var(--dur-medium) ease,
+    filter var(--dur-fast) ease !important;
+}
+
+button:hover,
+[role="button"]:hover,
+input[type="submit"]:hover,
+.cta-button:hover {
+  transform: translateY(-2px) scale(1.03) !important;
+  filter: brightness(1.15) !important;
+}
+
+button:active,
+[role="button"]:active,
+.cta-button:active {
+  transform: scale(0.97) !important;
+  transition-duration: 0.1s !important;
+}
+
+/* ─── Link Hover Underlines ─── */
+a:not(.no-underline):not([class*="btn"]) {
+  position: relative;
+  text-decoration: none;
+  transition: color var(--dur-fast) ease;
+}
+
+a:not(.no-underline):not([class*="btn"])::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--dur-medium) var(--ease-premium);
+}
+
+a:not(.no-underline):not([class*="btn"]):hover::after {
+  width: 100%;
+}
+
+/* ─── Card / Glass-Card Interactions ─── */
+/* These apply to any namespaced .glass-card-X class */
+[class*="glass-card-"] {
+  transition:
+    transform var(--dur-medium) var(--ease-premium),
+    box-shadow var(--dur-slow) ease,
+    border-color var(--dur-medium) ease !important;
+  position: relative;
+  overflow: hidden;
+}
+
+[class*="glass-card-"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.04) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-medium) ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+[class*="glass-card-"]:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.12) !important;
+}
+
+[class*="glass-card-"]:hover::before {
+  opacity: 1;
+}
+
+/* ─── Logo Interaction ─── */
+.logo-container,
+.logo-item,
+img[alt*="logo"],
+img[alt*="Logo"] {
+  transition:
+    transform var(--dur-medium) var(--ease-bounce),
+    filter var(--dur-medium) ease !important;
+}
+
+.logo-container:hover,
+.logo-item:hover {
+  transform: scale(1.08) !important;
+  filter: brightness(1.2) !important;
+}
+
+/* ─── Nav Links ─── */
+.nav-link {
+  transition:
+    color var(--dur-fast) ease,
+    text-shadow var(--dur-fast) ease !important;
+}
+
+/* ─── Scroll-to-top shimmer on active section ─── */
+section[id^="section-"].is-visible {
+  animation: none; /* prevent conflict with scroll-story */
+}
+
+/* ─── Mobile: Remove cursor, keep micro-interactions ─── */
+@media (max-width: 768px) {
+  * { cursor: auto !important; }
+  .cursor-dot, .cursor-ring { display: none; }
+
+  /* Lighter hover effects on touch */
+  [class*="glass-card-"]:hover {
+    transform: none !important;
+  }
+  button:hover, .cta-button:hover {
+    transform: none !important;
+  }
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  * { cursor: auto !important; }
+  .cursor-dot, .cursor-ring { display: none; }
+  [class*="glass-card-"],
+  button, a {
+    transition: none !important;
+  }
+}

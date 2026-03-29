@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ARCHITECT_SYS | Project Intake</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#e3e2e2",
+              "surface-variant": "#353535",
+              "on-surface": "#e2e2e2",
+              "inverse-primary": "#006a6a",
+              "primary": "#ffffff",
+              "surface-bright": "#393939",
+              "tertiary-fixed": "#fce442",
+              "on-primary-fixed-variant": "#004f4f",
+              "outline-variant": "#3a4a49",
+              "on-surface-variant": "#b9cac9",
+              "on-background": "#e2e2e2",
+              "background": "#131313",
+              "inverse-on-surface": "#303030",
+              "on-secondary-container": "#b8b8b8",
+              "on-error-container": "#ffdad6",
+              "primary-fixed": "#00fbfb",
+              "inverse-surface": "#e2e2e2",
+              "surface-dim": "#131313",
+              "surface-container-low": "#1b1b1b",
+              "on-tertiary": "#383100",
+              "error": "#ffb4ab",
+              "tertiary-fixed-dim": "#dec723",
+              "surface-container-high": "#2a2a2a",
+              "on-tertiary-fixed-variant": "#504700",
+              "secondary-fixed-dim": "#c6c6c6",
+              "primary-container": "#00fbfb",
+              "on-secondary": "#2f3131",
+              "on-primary-container": "#007070",
+              "on-tertiary-container": "#716500",
+              "on-primary": "#003737",
+              "surface": "#131313",
+              "outline": "#839493",
+              "on-primary-fixed": "#002020",
+              "tertiary": "#ffffff",
+              "error-container": "#93000a",
+              "primary-fixed-dim": "#00dddd",
+              "on-error": "#690005",
+              "tertiary-container": "#fce442",
+              "surface-container-highest": "#353535",
+              "secondary": "#c6c6c6",
+              "on-tertiary-fixed": "#201c00",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-container": "#1f1f1f",
+              "on-secondary-fixed": "#1a1c1c",
+              "on-secondary-fixed-variant": "#464747",
+              "secondary-container": "#484949",
+              "surface-tint": "#00dddd"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(31, 31, 31, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .matte-glass {
+            background: rgba(27, 27, 27, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .cyan-glow {
+            box-shadow: 0 0 20px rgba(0, 251, 251, 0.1);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 251, 251, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#131313]/80 backdrop-blur-xl flex justify-between items-center px-8 py-6 max-w-none shadow-[0_4px_20px_rgba(0,255,255,0.05)]">
+<div class="text-xl font-bold tracking-tighter text-white font-headline">ARCHITECT_SYS</div>
+<div class="hidden md:flex gap-10 items-center">
+<a class="font-['Space_Grotesk'] tracking-[0.02em] uppercase text-sm text-[#c6c6c6] hover:text-white transition-colors" href="#">Projects</a>
+<a class="font-['Space_Grotesk'] tracking-[0.02em] uppercase text-sm text-[#c6c6c6] hover:text-white transition-colors" href="#">Services</a>
+<a class="font-['Space_Grotesk'] tracking-[0.02em] uppercase text-sm text-[#c6c6c6] hover:text-white transition-colors" href="#">Process</a>
+<a class="font-['Space_Grotesk'] tracking-[0.02em] uppercase text-sm text-[#00ffff] font-bold border-b border-[#00ffff] pb-1" href="#">Contact</a>
+</div>
+<button class="bg-gradient-to-br from-primary-fixed to-on-primary-container text-on-primary px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wider hover:shadow-[0_0_15px_rgba(0,251,251,0.4)] transition-all duration-300 scale-100 active:scale-95">
+            Start Project
+        </button>
+</nav>
+<main class="min-h-screen pt-32 pb-20 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+<!-- Left: Intake Form -->
+<div class="lg:col-span-7">
+<div class="mb-12">
+<h1 class="font-headline text-5xl md:text-6xl font-bold tracking-tight text-white mb-4">
+                        Initialize <span class="text-primary-fixed text-glow">Inquiry</span>
+</h1>
+<p class="text-secondary text-lg max-w-xl">
+                        Provide your project parameters to receive a custom architecture proposal within 48 business hours.
+                    </p>
+</div>
+<div class="matte-glass rounded-xl p-8 border border-outline-variant/15 cyan-glow">
+<form class="space-y-8">
+<!-- Identity Block -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-outline text-xs uppercase tracking-widest font-bold">Full Name</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-white placeholder:text-outline/40 focus:ring-1 focus:ring-primary-fixed transition-all" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-outline text-xs uppercase tracking-widest font-bold">Business Name</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-white placeholder:text-outline/40 focus:ring-1 focus:ring-primary-fixed transition-all" placeholder="Acme Corp" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-outline text-xs uppercase tracking-widest font-bold">Email Address</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-white placeholder:text-outline/40 focus:ring-1 focus:ring-primary-fixed transition-all" placeholder="contact@business.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="text-outline text-xs uppercase tracking-widest font-bold">WhatsApp / Mobile</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-white placeholder:text-outline/40 focus:ring-1 focus:ring-primary-fixed transition-all" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+<!-- Service Selection Tiles -->
+<div class="space-y-4">
+<label class="text-outline text-xs uppercase tracking-widest font-bold block">Service Requirement</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+<button class="group flex flex-col items-center justify-center p-4 rounded-lg bg-surface-container border border-outline-variant/15 hover:border-primary-fixed/50 transition-all text-center" type="button">
+<span class="material-symbols-outlined text-primary-fixed mb-2" data-icon="language">language</span>
+<span class="text-xs font-medium text-secondary group-hover:text-white">Web Design</span>
+</button>
+<button class="group flex flex-col items-center justify-center p-4 rounded-lg bg-surface-container border border-outline-variant/15 hover:border-primary-fixed/50 transition-all text-center" type="button">
+<span class="material-symbols-outlined text-primary-fixed mb-2" data-icon="filter_alt">filter_alt</span>
+<span class="text-xs font-medium text-secondary group-hover:text-white">Funnels</span>
+</button>
+<button class="group flex flex-col items-center justify-center p-4 rounded-lg bg-surface-container border border-outline-variant/15 hover:border-primary-fixed/50 transition-all text-center" type="button">
+<span class="material-symbols-outlined text-primary-fixed mb-2" data-icon="hub">hub</span>
+<span class="text-xs font-medium text-secondary group-hover:text-white">B2B Lead Gen</span>
+</button>
+<button class="group flex flex-col items-center justify-center p-4 rounded-lg bg-surface-container border border-outline-variant/15 hover:border-primary-fixed/50 transition-all text-center" type="button">
+<span class="material-symbols-outlined text-primary-fixed mb-2" data-icon="bolt">bolt</span>
+<span class="text-xs font-medium text-secondary group-hover:text-white">Automations</span>
+</button>
+<button class="group flex flex-col items-center justify-center p-4 rounded-lg bg-surface-container border border-outline-variant/15 hover:border-primary-fixed/50 transition-all text-center" type="button">
+<span class="material-symbols-outlined text-primary-fixed mb-2" data-icon="brush">brush</span>
+<span class="text-xs font-medium text-secondary group-hover:text-white">Branding</span>
+</button>
+<button class="group flex flex-col items-center justify-center p-4 rounded-lg bg-surface-container-highest border border-primary-fixed/60 transition-all text-center ring-1 ring-primary-fixed/20" type="button">
+<span class="material-symbols-outlined text-primary-fixed mb-2" data-icon="more_horiz">more_horiz</span>
+<span class="text-xs font-medium text-white">Other</span>
+</button>
+</div>
+</div>
+<!-- Timeline Selector -->
+<div class="space-y-4">
+<label class="text-outline text-xs uppercase tracking-widest font-bold block">Execution Timeline</label>
+<div class="flex flex-wrap gap-3">
+<label class="cursor-pointer">
+<input class="hidden peer" name="timeline" type="radio"/>
+<div class="px-6 py-2 rounded-full border border-outline-variant/20 bg-surface-container peer-checked:bg-primary-fixed peer-checked:text-on-primary transition-all text-sm font-medium">ASAP</div>
+</label>
+<label class="cursor-pointer">
+<input checked="" class="hidden peer" name="timeline" type="radio"/>
+<div class="px-6 py-2 rounded-full border border-outline-variant/20 bg-surface-container peer-checked:bg-primary-fixed peer-checked:text-on-primary transition-all text-sm font-medium">1-2 weeks</div>
+</label>
+<label class="cursor-pointer">
+<input class="hidden peer" name="timeline" type="radio"/>
+<div class="px-6 py-2 rounded-full border border-outline-variant/20 bg-surface-container peer-checked:bg-primary-fixed peer-checked:text-on-primary transition-all text-sm font-medium">1 month+</div>
+</label>
+</div>
+</div>
+<!-- Submit CTA -->
+<button class="w-full bg-gradient-to-r from-primary-fixed to-on-primary-container text-on-primary font-headline py-5 rounded-lg font-bold uppercase tracking-[0.1em] text-lg hover:shadow-[0_0_30px_rgba(0,251,251,0.3)] transition-all duration-500 scale-100 active:scale-[0.98]" type="submit">
+                            Submit Project Inquiry
+                        </button>
+</form>
+</div>
+</div>
+<!-- Right: Trust Panel -->
+<div class="lg:col-span-5 space-y-12 lg:sticky lg:top-32">
+<div class="relative rounded-xl overflow-hidden aspect-video group">
+<img alt="Cyberpunk workspace" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="high-tech futuristic digital workspace with multiple neon blue screens showing architectural blueprints and code in a dark room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJaj1iYBCJMUCiirS9d8aN_wAlZDl6fFmmkj_8hyXRKb54omqHj0jy8yG5pG29BVLPGfHOb3VMKsi0eRqr181f_bDlRgMm0jyfhbPMfTPlcgbncH1cD3cIFpZXQjTlOx-p72FbKeuxZnKtt2nb8chhjCxZsSG8yRWTTXAr2m2xx_LYufL_PgBsfhI-oY_3snZauMLxThDs2xvRBfC7oB0n-2tgwebWHIuG2_MvB3_mgG9b53bGd4x6zrUxX2RTfmcUxGJZdQBFS7nf"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+</div>
+<div class="space-y-10">
+<div>
+<h3 class="font-headline text-2xl font-bold text-white mb-6 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-primary-fixed"></span>
+                            The Ecosystem
+                        </h3>
+<div class="grid grid-cols-1 gap-8">
+<div class="flex gap-6 items-start">
+<div class="bg-surface-container-high p-3 rounded-lg ring-1 ring-outline-variant/10">
+<span class="material-symbols-outlined text-primary-fixed text-3xl" data-icon="verified">verified</span>
+</div>
+<div>
+<h4 class="text-white font-bold mb-1">Precision Engineering</h4>
+<p class="text-secondary text-sm leading-relaxed">Every digital asset is architected for maximum conversion velocity and technical scalability.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="bg-surface-container-high p-3 rounded-lg ring-1 ring-outline-variant/10">
+<span class="material-symbols-outlined text-primary-fixed text-3xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<h4 class="text-white font-bold mb-1">Bespoke Aesthetics</h4>
+<p class="text-secondary text-sm leading-relaxed">No templates. We build editorial-grade experiences that define market leaders.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Process Steps -->
+<div class="bg-surface-container-low p-8 rounded-xl border border-outline-variant/5">
+<h3 class="font-headline text-xl font-bold text-white mb-6">Collaboration Protocol</h3>
+<ul class="space-y-6">
+<li class="flex items-center gap-4">
+<span class="text-primary-fixed font-headline font-bold text-lg italic">01.</span>
+<span class="text-on-surface-variant text-sm font-medium tracking-wide">Analysis &amp; Requirements Gathering</span>
+</li>
+<li class="flex items-center gap-4">
+<span class="text-primary-fixed font-headline font-bold text-lg italic">02.</span>
+<span class="text-on-surface-variant text-sm font-medium tracking-wide">Strategic Architecture Proposal</span>
+</li>
+<li class="flex items-center gap-4">
+<span class="text-primary-fixed font-headline font-bold text-lg italic">03.</span>
+<span class="text-on-surface-variant text-sm font-medium tracking-wide">Execution &amp; Iterative Refinement</span>
+</li>
+<li class="flex items-center gap-4">
+<span class="text-primary-fixed font-headline font-bold text-lg italic">04.</span>
+<span class="text-on-surface-variant text-sm font-medium tracking-wide">Global Deployment &amp; Scale</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#3a4a49]/15 bg-[#0e0e0e] flex flex-col md:flex-row justify-between items-center px-12 py-10">
+<div class="text-lg font-black text-white font-headline tracking-tighter mb-4 md:mb-0">ARCHITECT_SYS</div>
+<div class="text-[10px] tracking-widest uppercase font-body text-[#839493] mb-4 md:mb-0">
+            © 2024 SYSTEMS ARCHITECT. ALL RIGHTS RESERVED.
+        </div>
+<div class="flex gap-8">
+<a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#839493] hover:text-white transition-colors duration-500" href="#">Privacy Policy</a>
+<a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#839493] hover:text-white transition-colors duration-500" href="#">Terms of Service</a>
+<a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#839493] hover:text-white transition-colors duration-500" href="#">LinkedIn</a>
+<a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#839493] hover:text-white transition-colors duration-500" href="#">Github</a>
+</div>
+</footer>
+</body></html>

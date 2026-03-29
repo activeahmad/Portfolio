@@ -1,0 +1,62 @@
+/**
+ * scroll-story.css (Optimized)
+ * Lightweight IntersectionObserver-based reveal via CSS only.
+ * No parallax transforms, no fixed layers, no GPU-heavy effects.
+ * Uses `contain: content` on sections to isolate layout reflows.
+ */
+
+/* ─── Section containment — prevents cross-section reflows ─── */
+section[id^="section-"] {
+  contain: content; /* layout, style, paint isolated per section */
+  position: relative;
+  width: 100%;
+}
+
+/* ─── Section reveal — opacity + translate only (compositor-safe) ─── */
+.story-hidden {
+  opacity: 0;
+  translate: 0 32px; /* Uses `translate` property, not `transform` — cheaper */
+  transition:
+    opacity 0.65s ease-out,
+    translate 0.65s ease-out;
+  will-change: opacity, translate;
+}
+
+.story-visible {
+  opacity: 1;
+  translate: 0 0;
+  will-change: auto; /* Release after animation */
+}
+
+/* ─── Hero subtle fade-up exit — CSS-only, no JS transforms ─── */
+#section-0 {
+  transition: opacity 0.4s ease-out;
+}
+
+/* ─── Subtle scene divider between sections — CSS only, no JS ─── */
+section[id^="section-"] + section[id^="section-"]::before {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 40%;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+}
+
+/* ─── Mobile: shorten transition ─── */
+@media (max-width: 768px) {
+  .story-hidden {
+    translate: 0 16px;
+    transition-duration: 0.4s;
+  }
+}
+
+/* ─── Reduced motion override ─── */
+@media (prefers-reduced-motion: reduce) {
+  .story-hidden {
+    opacity: 1 !important;
+    translate: 0 0 !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+}
