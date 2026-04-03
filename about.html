@@ -788,12 +788,34 @@
 
     @media (max-width: 768px) {
       #singularity-canvas,
-      #canvas-container-milestones,
       #canvas-0,
       #canvas-1,
       #canvas-2,
       .grain-overlay {
         display: none !important;
+      }
+
+      #canvas-container-milestones {
+        display: block !important;
+        opacity: 1 !important;
+        z-index: 1 !important;
+      }
+
+      .info-panel {
+        top: auto;
+        bottom: 5%;
+        left: 5%;
+        right: 5%;
+        width: 90%;
+        transform: translateY(20px);
+        padding: 1.5rem;
+        border-left: none;
+        border-top: 1px solid #00FFFF;
+        z-index: 100;
+      }
+
+      .info-panel.active {
+        transform: translateY(0);
       }
 
       #hero-container {
@@ -1222,21 +1244,22 @@
         // Initialization Variables
         const canvasMilestones = document.querySelector('#canvas-container-milestones');
         if (!canvasMilestones) return;
-        const renderer = new THREE.WebGLRenderer({ canvas: canvasMilestones, antialias: true, alpha: true });
+        const isMobile = window.innerWidth < 768;
+        const renderer = new THREE.WebGLRenderer({ canvas: canvasMilestones, antialias: !isMobile, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
 
         const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x000000, 0.05);
+        scene.fog = new THREE.FogExp2(0x000000, isMobile ? 0.08 : 0.05);
 
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 10;
 
         // Lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+        const ambientLight = new THREE.AmbientLight(0xffffff, isMobile ? 0.6 : 0.4);
         scene.add(ambientLight);
 
-        const mainLight = new THREE.PointLight(0x00FFFF, 2, 50);
+        const mainLight = new THREE.PointLight(0x00FFFF, isMobile ? 3 : 2, 50);
         mainLight.position.set(10, 10, 10);
         scene.add(mainLight);
 
@@ -1245,14 +1268,14 @@
         scene.add(blueLight);
 
         // Neural Network Mesh
-        const networkCount = 40;
+        const networkCount = isMobile ? 15 : 40;
         const networkPoints = [];
         const networkGeometry = new THREE.BufferGeometry();
         const networkPositions = new Float32Array(networkCount * 3);
 
         for (let i = 0; i < networkCount; i++) {
-          const x = (Math.random() - 0.5) * 30;
-          const y = (Math.random() - 0.5) * 20;
+          const x = (Math.random() - 0.5) * (isMobile ? 15 : 30);
+          const y = (Math.random() - 0.5) * (isMobile ? 15 : 20);
           const z = (Math.random() - 0.5) * 60 - 20;
           networkPositions[i * 3] = x;
           networkPositions[i * 3 + 1] = y;
@@ -1263,7 +1286,7 @@
         networkGeometry.setAttribute('position', new THREE.BufferAttribute(networkPositions, 3));
 
         // Glowing Nodes
-        const nodeGeometry = new THREE.SphereGeometry(0.15, 16, 16);
+        const nodeGeometry = new THREE.SphereGeometry(isMobile ? 0.1 : 0.15, 8, 8);
         const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x00FFFF });
         const nodesGroup = new THREE.Group();
 
@@ -1275,13 +1298,13 @@
         scene.add(nodesGroup);
 
         // Connecting Lines (Mesh)
-        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00FFFF, transparent: true, opacity: 0.2 });
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00FFFF, transparent: true, opacity: isMobile ? 0.1 : 0.2 });
         const linesGroup = new THREE.Group();
 
         for (let i = 0; i < networkCount; i++) {
           for (let j = i + 1; j < networkCount; j++) {
             const dist = networkPoints[i].distanceTo(networkPoints[j]);
-            if (dist < 12) {
+            if (dist < (isMobile ? 15 : 12)) {
               const lineGeom = new THREE.BufferGeometry().setFromPoints([networkPoints[i], networkPoints[j]]);
               const line = new THREE.Line(lineGeom, lineMaterial);
               linesGroup.add(line);
@@ -1291,14 +1314,14 @@
         scene.add(linesGroup);
 
         // Atmospheric Dust
-        const particleCount = 2500;
+        const particleCount = isMobile ? 500 : 2500;
         const particles = new THREE.BufferGeometry();
         const posArr = new Float32Array(particleCount * 3);
         for (let i = 0; i < particleCount * 3; i++) {
           posArr[i] = (Math.random() - 0.5) * 100;
         }
         particles.setAttribute('position', new THREE.BufferAttribute(posArr, 3));
-        const particleMaterial = new THREE.PointsMaterial({ size: 0.05, color: 0x00FFFF, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending });
+        const particleMaterial = new THREE.PointsMaterial({ size: isMobile ? 0.03 : 0.05, color: 0x00FFFF, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending });
         const particleMesh = new THREE.Points(particles, particleMaterial);
         scene.add(particleMesh);
 
@@ -1355,8 +1378,8 @@
           group.add(mesh, wire);
 
           group.position.z = -index * 25;
-          group.position.x = (Math.random() - 0.5) * 8;
-          group.position.y = (Math.random() - 0.5) * 4;
+          group.position.x = isMobile ? (Math.random() - 0.5) * 4 : (Math.random() - 0.5) * 8;
+          group.position.y = isMobile ? (Math.random() - 0.5) * 2 : (Math.random() - 0.5) * 4;
 
           scene.add(group);
           objects.push({ group, data: milestoneData[index], index });
@@ -1397,12 +1420,12 @@
             // Camera forward movement with depth
             gsap.to(camera.position, {
               z: 10 - (progress * 200),
-              duration: 1.5,
+              duration: isMobile ? 0.8 : 1.5,
               ease: "power2.out"
             });
 
             const currentMilestoneIndex = Math.floor(progress * 7.99); // scale to 0-7
-            if (progress > 0.05 && progress < 0.95) {
+            if (progress > 0.02 && progress < 0.98) {
               if (pTitle) pTitle.innerText = milestoneData[currentMilestoneIndex].title;
               if (pDate) pDate.innerText = milestoneData[currentMilestoneIndex].date;
               if (pDesc) pDesc.innerText = milestoneData[currentMilestoneIndex].desc;
@@ -1414,8 +1437,10 @@
             // Force Canvas Opacity explicitly
             if (canvasMilestones) canvasMilestones.style.opacity = '1';
           } else {
-            milestoneContainer.classList.remove('active');
-            if (canvasMilestones) canvasMilestones.style.opacity = '0';
+            if (!isMobile) {
+              milestoneContainer.classList.remove('active');
+              if (canvasMilestones) canvasMilestones.style.opacity = '0';
+            }
           }
         };
 
