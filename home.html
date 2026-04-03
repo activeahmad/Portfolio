@@ -1408,10 +1408,6 @@
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           ctx.closePath();
           ctx.fill();
-
-          // Add a small glow to the node
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = 'white';
         }
 
         update() {
@@ -1445,24 +1441,24 @@
 
       function init() {
         particles = [];
-        let particleDensity = isMobileOrReduced ? 18000 : 9000;
-        let numberOfParticles = (canvas.height * canvas.width) / particleDensity;
+        let particleDensity = isMobileOrReduced ? 25000 : 15000;
+        let numberOfParticles = Math.min((canvas.height * canvas.width) / particleDensity, isMobileOrReduced ? 40 : 100);
         for (let i = 0; i < numberOfParticles; i++) {
           particles.push(new Particle());
         }
       }
 
         function connect() {
-          let opacityValue = 1;
+          const maxDistanceSq = 150 * 150;
           for (let a = 0; a < particles.length; a++) {
-            for (let b = a; b < particles.length; b++) {
-              let dx = particles[a].x - particles[b].x;
-              let dy = particles[a].y - particles[b].y;
-              let distance = Math.sqrt(dx * dx + dy * dy);
+            for (let b = a + 1; b < particles.length; b++) {
+              const dx = particles[a].x - particles[b].x;
+              const dy = particles[a].y - particles[b].y;
+              const distanceSq = dx * dx + dy * dy;
 
-              if (distance < 150) {
-                opacityValue = 1 - (distance / 150);
-                ctx.strokeStyle = `rgba(255, 255, 255, ${opacityValue * 0.2})`;
+              if (distanceSq < maxDistanceSq) {
+                const opacity = 1 - (Math.sqrt(distanceSq) / 150);
+                ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.15})`;
                 ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.moveTo(particles[a].x, particles[a].y);
@@ -1475,7 +1471,6 @@
 
         function animate() {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.shadowBlur = 0; // Reset shadow for background lines
           for (let i = 0; i < particles.length; i++) {
             particles[i].update();
             particles[i].draw();
