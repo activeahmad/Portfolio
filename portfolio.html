@@ -348,6 +348,296 @@
       font-family: 'Inter', sans-serif;
       background-color: #0a0a0a;
     }
+
+    /* =========================
+       Portfolio Page Styles (from port.html, brand-aligned)
+       ========================= */
+    :root {
+      --bg: #000000;
+      --bg2: #050505;
+      --bg3: #111111;
+      --border: rgba(255, 255, 255, 0.08);
+      --border2: rgba(255, 255, 255, 0.18);
+      --text: #ffffff;
+      --muted: #BFBFBF;
+      --accent: #00FFFF;
+      --accent2: #00f2ff;
+      --tag-bg: rgba(0, 255, 255, 0.12);
+      --tag-text: #00FFFF;
+      --card-hover: #111111;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --radius: 16px;
+      --radius-sm: 8px;
+      --radius-pill: 999px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .portfolio-page {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* Hero */
+    .portfolio-hero {
+      padding: 7rem 2.5rem 3rem;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .portfolio-hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .portfolio-hero-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .portfolio-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.25rem;
+    }
+
+    .portfolio-hero h1 span {
+      color: var(--accent);
+    }
+
+    .portfolio-hero p {
+      max-width: 560px;
+      font-size: 1.0625rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    /* Filter bar */
+    .portfolio-filter-section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 2.5rem 2rem;
+    }
+
+    .portfolio-filter-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .portfolio-filter-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 0.5rem;
+      min-width: 60px;
+    }
+
+    .portfolio-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      border: 1px solid var(--border2);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+      font-family: var(--font-body);
+    }
+
+    .portfolio-pill:hover {
+      border-color: var(--border2);
+      color: var(--text);
+      background: var(--bg3);
+    }
+
+    .portfolio-pill.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #000000;
+    }
+
+    .portfolio-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 2.5rem 2.5rem;
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Grid */
+    .portfolio-grid-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 2.5rem 5rem;
+    }
+
+    .portfolio-grid-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .portfolio-grid-meta h2 {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .portfolio-grid-count {
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* Card */
+    .portfolio-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .portfolio-card:hover {
+      border-color: var(--border2);
+      background: var(--card-hover);
+      transform: translateY(-3px);
+    }
+
+    .portfolio-card-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      background: var(--bg3);
+    }
+
+    .portfolio-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      display: block;
+    }
+
+    .portfolio-card:hover .portfolio-card-img-wrap img {
+      transform: scale(1.05);
+    }
+
+    .portfolio-card-tool-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 0.25rem 0.625rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: rgba(0, 0, 0, 0.85);
+      color: var(--text);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border2);
+    }
+
+    .portfolio-card-body {
+      padding: 1.125rem 1.25rem 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .portfolio-card-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    .portfolio-card-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .portfolio-card-arrow {
+      align-self: flex-end;
+      margin-top: auto;
+      padding-top: 0.75rem;
+      color: var(--muted);
+      font-size: 1rem;
+      transition: color var(--transition), transform var(--transition);
+    }
+
+    .portfolio-card:hover .portfolio-card-arrow {
+      color: var(--accent);
+      transform: translate(3px, -3px);
+    }
+
+    .portfolio-card.hidden {
+      display: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .portfolio-hero,
+      .portfolio-filter-section,
+      .portfolio-grid-wrapper {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .portfolio-divider {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -378,6 +668,280 @@
       </div>
     </div>
   </nav>
+
+  <main class="portfolio-page pt-20">
+    <section class="portfolio-hero">
+      <p class="portfolio-hero-label">Selected Work</p>
+      <h1>Projects built<br>with <span>intention.</span></h1>
+      <p>A curated collection across web design, sales funnels, AI automation, and social media — each crafted with
+        intention and built with the right tools.</p>
+    </section>
+
+    <section class="portfolio-filter-section">
+      <div class="portfolio-filter-row" id="category-filters">
+        <span class="portfolio-filter-label">Category</span>
+        <button class="portfolio-pill active" data-cat="all">All Work</button>
+        <button class="portfolio-pill" data-cat="website">Website <span
+            style="opacity:0.5;margin-left:4px">4</span></button>
+        <button class="portfolio-pill" data-cat="funnel">Funnel <span
+            style="opacity:0.5;margin-left:4px">3</span></button>
+        <button class="portfolio-pill" data-cat="ai">AI Automation <span
+            style="opacity:0.5;margin-left:4px">3</span></button>
+        <button class="portfolio-pill" data-cat="social">Social Media <span
+            style="opacity:0.5;margin-left:4px">3</span></button>
+        <button class="portfolio-pill" data-cat="branding">Branding <span
+            style="opacity:0.5;margin-left:4px">2</span></button>
+      </div>
+      <div class="portfolio-filter-row" id="tool-filters">
+        <span class="portfolio-filter-label">Tools</span>
+        <button class="portfolio-pill active" data-tool="all">All Tools</button>
+        <button class="portfolio-pill" data-tool="Wix">Wix</button>
+        <button class="portfolio-pill" data-tool="WordPress">WordPress</button>
+        <button class="portfolio-pill" data-tool="Webflow">Webflow</button>
+        <button class="portfolio-pill" data-tool="Shopify">Shopify</button>
+        <button class="portfolio-pill" data-tool="GoHighLevel">GoHighLevel</button>
+        <button class="portfolio-pill" data-tool="ClickFunnels">ClickFunnels</button>
+        <button class="portfolio-pill" data-tool="Systeme.io">Systeme.io</button>
+        <button class="portfolio-pill" data-tool="Make">Make</button>
+        <button class="portfolio-pill" data-tool="Zapier">Zapier</button>
+        <button class="portfolio-pill" data-tool="n8n">n8n</button>
+        <button class="portfolio-pill" data-tool="Canva">Canva</button>
+        <button class="portfolio-pill" data-tool="Figma">Figma</button>
+        <button class="portfolio-pill" data-tool="Adobe Suite">Adobe Suite</button>
+        <button class="portfolio-pill" data-tool="Illustrator">Illustrator</button>
+        <button class="portfolio-pill" data-tool="Photoshop">Photoshop</button>
+      </div>
+    </section>
+
+    <hr class="portfolio-divider" />
+
+    <section class="portfolio-grid-wrapper">
+      <div class="portfolio-grid-meta">
+        <h2 id="section-title">All Work</h2>
+        <span class="portfolio-grid-count" id="count-label">15 projects</span>
+      </div>
+
+      <div class="portfolio-grid" id="portfolio-grid">
+        <!-- WEBSITES -->
+        <div class="portfolio-card" data-cat="website" data-tool="Wix">
+          <div class="portfolio-card-img-wrap">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663435265461/oEqTSXLj3ezM2DEQ8idFfF/portfolio-website-1-G2x3JACLYtMVryUshKrWB8.webp"
+              alt="Elevate Business Solutions" loading="lazy" />
+            <span class="portfolio-card-tool-badge">Wix</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Elevate Business Solutions</p>
+            <p class="portfolio-card-desc">A premium business consulting website with custom animations and lead capture
+              forms.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-cat="website" data-tool="Shopify">
+          <div class="portfolio-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+              alt="Artisan Coffee Roasters" loading="lazy" />
+            <span class="portfolio-card-tool-badge">Shopify</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Artisan Coffee Roasters</p>
+            <p class="portfolio-card-desc">E-commerce website for a specialty coffee brand with subscription
+              management.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-cat="website" data-tool="Webflow">
+          <div class="portfolio-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80"
+              alt="Studio Arch Portfolio" loading="lazy" />
+            <span class="portfolio-card-tool-badge">Webflow</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Studio Arch Portfolio</p>
+            <p class="portfolio-card-desc">Architecture firm portfolio with immersive project galleries and 3D
+              walkthroughs.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-cat="website" data-tool="WordPress">
+          <div class="portfolio-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&q=80"
+              alt="Wellness Hub Blog" loading="lazy" />
+            <span class="portfolio-card-tool-badge">WordPress</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Wellness Hub Blog</p>
+            <p class="portfolio-card-desc">Health and wellness blog with content management and membership features.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <!-- FUNNELS -->
+        <div class="portfolio-card" data-cat="funnel" data-tool="GoHighLevel">
+          <div class="portfolio-card-img-wrap">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663435265461/oEqTSXLj3ezM2DEQ8idFfF/portfolio-funnel-1-Uin68ndioKPyASYyLydBro.webp"
+              alt="SaaS Launch Funnel" loading="lazy" />
+            <span class="portfolio-card-tool-badge">GoHighLevel</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">SaaS Launch Funnel</p>
+            <p class="portfolio-card-desc">High-converting launch funnel with upsells, downsells, and automated email
+              sequences.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-cat="funnel" data-tool="ClickFunnels">
+          <div class="portfolio-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+              alt="Coaching Program Funnel" loading="lazy" />
+            <span class="portfolio-card-tool-badge">ClickFunnels</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Coaching Program Funnel</p>
+            <p class="portfolio-card-desc">Multi-step application funnel for a high-ticket coaching program with booking
+              integration.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-cat="funnel" data-tool="Systeme.io">
+          <div class="portfolio-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80"
+              alt="Course Sales Pipeline" loading="lazy" />
+            <span class="portfolio-card-tool-badge">Systeme.io</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Course Sales Pipeline</p>
+            <p class="portfolio-card-desc">Automated sales pipeline for an online course with webinar registration and
+              follow-ups.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <!-- AI AUTOMATION -->
+        <div class="portfolio-card" data-cat="ai" data-tool="Make">
+          <div class="portfolio-card-img-wrap">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663435265461/oEqTSXLj3ezM2DEQ8idFfF/portfolio-ai-1-ZCZWGAeUaSc63P772KhChX.webp"
+              alt="Customer Support Bot" loading="lazy" />
+            <span class="portfolio-card-tool-badge">Make</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Customer Support Bot</p>
+            <p class="portfolio-card-desc">AI-powered customer support automation with natural language processing and
+              ticket routing.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-cat="ai" data-tool="Zapier">
+          <div class="portfolio-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
+              alt="Lead Scoring Automation" loading="lazy" />
+            <span class="portfolio-card-tool-badge">Zapier</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Lead Scoring Automation</p>
+            <p class="portfolio-card-desc">Automated lead scoring system that qualifies prospects and routes them to the
+              right sales rep.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-cat="ai" data-tool="n8n">
+          <div class="portfolio-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80"
+              alt="Content Repurposing Engine" loading="lazy" />
+            <span class="portfolio-card-tool-badge">n8n</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Content Repurposing Engine</p>
+            <p class="portfolio-card-desc">Workflow that automatically repurposes long-form content into social posts,
+              emails, and threads.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <!-- SOCIAL MEDIA -->
+        <div class="portfolio-card" data-cat="social" data-tool="Canva">
+          <div class="portfolio-card-img-wrap">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663435265461/oEqTSXLj3ezM2DEQ8idFfF/portfolio-social-1-VfRLR4VZuQeBYBaU9zN8Wk.webp"
+              alt="Sunrise Café Brand Kit" loading="lazy" />
+            <span class="portfolio-card-tool-badge">Canva</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Sunrise Café Brand Kit</p>
+            <p class="portfolio-card-desc">Complete social media brand kit with templates for posts, stories, and
+              reels.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-cat="social" data-tool="Figma">
+          <div class="portfolio-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80"
+              alt="Tech Startup Social Campaign" loading="lazy" />
+            <span class="portfolio-card-tool-badge">Figma</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Tech Startup Social Campaign</p>
+            <p class="portfolio-card-desc">30-day social media campaign with custom graphics, carousels, and engagement
+              strategy.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-cat="social" data-tool="Adobe Suite">
+          <div class="portfolio-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80"
+              alt="Restaurant Visual Identity" loading="lazy" />
+            <span class="portfolio-card-tool-badge">Adobe Suite</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Restaurant Visual Identity</p>
+            <p class="portfolio-card-desc">Social media visual identity system with photo editing presets and template
+              library.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <!-- BRANDING -->
+        <div class="portfolio-card" data-cat="branding" data-tool="Illustrator">
+          <div class="portfolio-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80"
+              alt="Terra Botanica Identity" loading="lazy" />
+            <span class="portfolio-card-tool-badge">Illustrator</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Terra Botanica Identity</p>
+            <p class="portfolio-card-desc">Complete brand identity including logo, color palette, typography, and brand
+              guidelines.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" data-cat="branding" data-tool="Photoshop">
+          <div class="portfolio-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80"
+              alt="Luxe Fitness Rebrand" loading="lazy" />
+            <span class="portfolio-card-tool-badge">Photoshop</span>
+          </div>
+          <div class="portfolio-card-body">
+            <p class="portfolio-card-title">Luxe Fitness Rebrand</p>
+            <p class="portfolio-card-desc">Full rebrand for a premium fitness studio including signage, merchandise, and
+              digital assets.</p>
+            <span class="portfolio-card-arrow">↗</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="bg-brand-black text-white pt-12 pb-10 px-6 md:px-12 lg:px-24 reveal-footer border-t border-white/5"
     data-purpose="main-footer">
@@ -422,6 +986,86 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const catFilters = document.querySelectorAll('#category-filters .portfolio-pill');
+    const toolFiltersContainer = document.getElementById('tool-filters');
+    const cards = document.querySelectorAll('.portfolio-card');
+    const countLabel = document.getElementById('count-label');
+    const sectionTitle = document.getElementById('section-title');
+
+    let activeCat = 'all';
+    let activeTool = 'all';
+
+    function getToolsForCategory(cat) {
+      const tools = new Set();
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          tools.add(card.dataset.tool);
+        }
+      });
+      return tools;
+    }
+
+    function rebuildToolFilters(cat) {
+      const relevantTools = getToolsForCategory(cat);
+      const allToolPills = toolFiltersContainer.querySelectorAll('.portfolio-pill[data-tool]');
+
+      allToolPills.forEach(pill => {
+        if (pill.dataset.tool === 'all') return;
+        if (relevantTools.has(pill.dataset.tool)) {
+          pill.style.display = '';
+        } else {
+          pill.style.display = 'none';
+          pill.classList.remove('active');
+        }
+      });
+
+      activeTool = 'all';
+      allToolPills.forEach(p => p.classList.remove('active'));
+      toolFiltersContainer.querySelector('.portfolio-pill[data-tool="all"]').classList.add('active');
+    }
+
+    function applyFilters() {
+      let visible = 0;
+      cards.forEach(card => {
+        const matchCat = activeCat === 'all' || card.dataset.cat === activeCat;
+        const matchTool = activeTool === 'all' || card.dataset.tool === activeTool;
+        if (matchCat && matchTool) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      countLabel.textContent = visible + (visible === 1 ? ' project' : ' projects');
+      const catLabel = activeCat === 'all' ? 'All Work' :
+        activeCat === 'website' ? 'Websites' :
+          activeCat === 'funnel' ? 'Funnels' :
+            activeCat === 'ai' ? 'AI Automation' :
+              activeCat === 'social' ? 'Social Media' : 'Branding';
+      sectionTitle.textContent = catLabel;
+    }
+
+    catFilters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catFilters.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCat = btn.dataset.cat;
+        rebuildToolFilters(activeCat);
+        applyFilters();
+      });
+    });
+
+    toolFiltersContainer.addEventListener('click', e => {
+      const btn = e.target.closest('.portfolio-pill[data-tool]');
+      if (!btn) return;
+      toolFiltersContainer.querySelectorAll('.portfolio-pill[data-tool]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTool = btn.dataset.tool;
+      applyFilters();
+    });
+  </script>
 </body>
 
 </html>
