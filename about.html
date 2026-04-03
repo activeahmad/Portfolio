@@ -785,6 +785,27 @@
     #milestone-container.active #canvas-container-milestones {
       opacity: 1;
     }
+
+    @media (max-width: 768px) {
+      #singularity-canvas,
+      #canvas-container-milestones,
+      #canvas-0,
+      #canvas-1,
+      #canvas-2,
+      .grain-overlay {
+        display: none !important;
+      }
+
+      #hero-container {
+        min-height: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-footer {
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -804,19 +825,26 @@
         </a>
       </div>
       <!-- Menu Items (Center) -->
-      <div class="hidden md:flex items-center space-x-8">
+      <div class="flex md:flex items-center space-x-4 md:space-x-8 overflow-x-auto md:overflow-visible text-xs md:text-sm">
         <a class="nav-link text-white text-sm uppercase tracking-widest font-medium" href="home.html">Home</a>
         <a class="nav-link text-white text-sm uppercase tracking-widest font-medium" href="about.html">About</a>
-        <a class="nav-link text-white text-sm uppercase tracking-widest font-medium" href="services.html">Services</a>
         <a class="nav-link text-white text-sm uppercase tracking-widest font-medium" href="portfolio.html">Portfolio</a>
         <a class="nav-link text-white text-sm uppercase tracking-widest font-medium" href="contact.html">Contact</a>
       </div>
       <!-- CTA Button (Right) -->
-      <div class="flex items-center">
+      <div class="hidden md:flex items-center">
         <a class="nav-cta-outline text-white px-6 py-2 rounded-sm text-xs uppercase tracking-[0.2em] font-bold"
           href="#contact">
           Start a Project
         </a>
+      </div>
+    </div>
+    <div class="md:hidden border-t border-white/10">
+      <div class="px-4 py-3 flex items-center justify-between text-[11px] uppercase tracking-[0.2em]">
+        <a class="text-white/80" href="home.html">Home</a>
+        <a class="text-white/80" href="about.html">About</a>
+        <a class="text-white/80" href="portfolio.html">Portfolio</a>
+        <a class="text-white/80" href="contact.html">Contact</a>
       </div>
     </div>
   </nav>
@@ -1497,8 +1525,6 @@
               </li>
               <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white"
                   href="portfolio.html">Portfolio</a></li>
-              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white"
-                  href="services.html">Services</a></li>
               <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white"
                   href="contact.html">Contact</a></li>
             </ul>
