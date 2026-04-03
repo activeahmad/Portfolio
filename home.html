@@ -349,7 +349,7 @@
       width: 100%;
       height: 400px;
       text-align: center;
-      transition: transform 2.5s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: transform 3s cubic-bezier(0.19, 1, 0.22, 1);
       transform-style: preserve-3d;
       cursor: pointer;
     }
@@ -388,7 +388,14 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 2rem;
+      padding: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .card-front-3,
+      .card-back-3 {
+        padding: 3rem;
+      }
     }
 
     .card-front-3 {
@@ -821,7 +828,7 @@
       <!-- BEGIN: Services Grid -->
       <section class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 max-w-7xl w-full" data-purpose="services-panels">
         <!-- Panel 1: Web Design -->
-        <article class="glass-card-1 " p-10 rounded-2xl flex flex-col justify-between h-80 cursor-default"
+        <article class="glass-card-1 p-10 sm:p-16 rounded-2xl flex flex-col justify-between h-80 cursor-default"
           data-purpose="service-panel" id="card-1">
           <div>
             <h2 class="text-2xl font-bold mb-4">Web Design</h2>
@@ -835,7 +842,7 @@
           </div>
         </article>
         <!-- Panel 2: Automation -->
-        <article class="glass-card-1 " p-10 rounded-2xl flex flex-col justify-between h-80 cursor-default"
+        <article class="glass-card-1 p-10 sm:p-16 rounded-2xl flex flex-col justify-between h-80 cursor-default"
           data-purpose="service-panel" id="card-2">
           <div>
             <h2 class="text-2xl font-bold mb-4">Automation</h2>
@@ -849,7 +856,7 @@
           </div>
         </article>
         <!-- Panel 3: AI Solutions -->
-        <article class="glass-card-1 " p-10 rounded-2xl flex flex-col justify-between h-80 cursor-default"
+        <article class="glass-card-1 p-10 sm:p-16 rounded-2xl flex flex-col justify-between h-80 cursor-default"
           data-purpose="service-panel" id="card-3">
           <div>
             <h2 class="text-2xl font-bold mb-4">AI Solutions</h2>
@@ -1616,13 +1623,38 @@
       });
     })();
     (function () {
-      // Tap/Click to Flip Cards Logic
+      // Automatic Scroll-Triggered Flip & Manual Tap Flip
       const cards = document.querySelectorAll('.card-container-3');
+      
+      // Manual Toggle on Click/Tap
       cards.forEach(card => {
         card.addEventListener('click', () => {
           card.classList.toggle('flipped');
         });
       });
+
+      // Automatic Trigger using Intersection Observer
+      if (cards.length && 'IntersectionObserver' in window) {
+        const flipObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            // Flip the card when it is 70% in view
+            if (entry.isIntersecting) {
+              // Add a slight delay for a more natural "scrolled over" feel
+              setTimeout(() => {
+                entry.target.classList.add('flipped');
+              }, 300);
+            } else {
+              // Optionally un-flip when scrolled out to allow re-triggering
+              entry.target.classList.remove('flipped');
+            }
+          });
+        }, { 
+          threshold: 0.7, // Trigger when 70% of the card is visible
+          rootMargin: '0px 0px -50px 0px' 
+        });
+
+        cards.forEach(card => flipObserver.observe(card));
+      }
 
       // Count-up Animation Logic
       const counters = document.querySelectorAll('.count-up');
