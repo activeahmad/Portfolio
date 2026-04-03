@@ -1302,38 +1302,42 @@
       data-purpose="main-footer">
       <div class="max-w-7xl mx-auto">
         <!-- Top Content Wrapper -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">
+        <div class="flex flex-col md:grid md:grid-cols-3 gap-12 md:gap-8 mb-16">
           <!-- BEGIN: Brand Column -->
-          <div class="flex flex-col space-y-2" data-purpose="footer-brand">
+          <div class="flex flex-col space-y-2 mb-8 md:mb-0" data-purpose="footer-brand">
             <h2 class="text-2xl font-bold tracking-tighter uppercase">Abdussalam Ahmad</h2>
             <p class="text-brand-gray text-sm tracking-widest font-light uppercase">Digital Systems &amp; Automation</p>
           </div>
           <!-- END: Brand Column -->
-          <!-- BEGIN: Navigation Column -->
-          <nav class="flex flex-col space-y-4" data-purpose="footer-nav">
-            <h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Navigation</h3>
-            <ul class="flex flex-col space-y-3">
-              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="home.html">Home</a></li>
-              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="about.html">About</a>
-              </li>
-              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white"
-                  href="portfolio.html">Portfolio</a></li>
-              <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white"
-                  href="contact.html">Contact</a></li>
-            </ul>
-          </nav>
-          <!-- END: Navigation Column -->
-          <!-- BEGIN: Social Column -->
-          <div class="flex flex-col space-y-4 md:items-end" data-purpose="footer-social">
-            <h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Connect</h3>
-            <ul class="flex flex-col space-y-3 md:items-end">
-              <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">LinkedIn</a></li>
-              <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">Twitter / X</a></li>
-              <li><a class="social-link text-sm font-light text-brand-gray inline-block"
-                  href="mailto:contact@example.com">Email</a></li>
-            </ul>
+          
+          <!-- Wrapper for Navigation and Connect to be side-by-side on mobile -->
+          <div class="grid grid-cols-2 gap-8 md:contents">
+            <!-- BEGIN: Navigation Column -->
+            <nav class="flex flex-col space-y-4" data-purpose="footer-nav">
+              <h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Navigation</h3>
+              <ul class="flex flex-col space-y-3">
+                <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="home.html">Home</a></li>
+                <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="about.html">About</a>
+                </li>
+                <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white"
+                    href="portfolio.html">Portfolio</a></li>
+                <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white"
+                    href="contact.html">Contact</a></li>
+              </ul>
+            </nav>
+            <!-- END: Navigation Column -->
+            <!-- BEGIN: Social Column -->
+            <div class="flex flex-col space-y-4 md:items-end" data-purpose="footer-social">
+              <h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Connect</h3>
+              <ul class="flex flex-col space-y-3 md:items-end">
+                <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">LinkedIn</a></li>
+                <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">Twitter / X</a></li>
+                <li><a class="social-link text-sm font-light text-brand-gray inline-block"
+                    href="mailto:contact@example.com">Email</a></li>
+              </ul>
+            </div>
+            <!-- END: Social Column -->
           </div>
-          <!-- END: Social Column -->
         </div>
         <!-- BEGIN: Bottom Copyright Area -->
         <div class="pt-8 border-t border-white/10" data-purpose="footer-bottom">
