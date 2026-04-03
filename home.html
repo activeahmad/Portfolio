@@ -349,31 +349,30 @@
       width: 100%;
       height: 400px;
       text-align: center;
-      transition: transform 1s ease-in-out;
+      transition: transform 2.5s cubic-bezier(0.19, 1, 0.22, 1);
       transform-style: preserve-3d;
       cursor: pointer;
     }
 
-    @media (hover: hover) and (pointer: fine) {
-      .card-container-3:hover .card-inner-3 {
-        transform: rotateY(180deg) scale(1.05);
-        box-shadow: 0 0 40px rgba(0, 242, 255, 0.4);
-      }
+    /* Desktop flip logic now handled via click/tap class .flipped */
+    .card-container-3.flipped .card-inner-3 {
+      transform: rotateY(180deg) scale(1.05);
+      box-shadow: 0 0 40px rgba(0, 242, 255, 0.4);
+    }
 
-      .card-container-3:hover .accent-line {
-        width: 80px;
+    .card-container-3.flipped .accent-line {
+      width: 80px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      /* Simple hover feedback instead of full flip */
+      .card-container-3:hover .card-inner-3 {
+        box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
       }
     }
 
     @media (hover: none), (pointer: coarse) {
-      .card-container-3.is-in-view .card-inner-3 {
-        transform: rotateY(180deg) scale(1.02);
-        box-shadow: 0 0 32px rgba(0, 242, 255, 0.35);
-      }
-
-      .card-container-3.is-in-view .accent-line {
-        width: 80px;
-      }
+      /* Card-specific mobile overrides if any */
     }
 
     .card-front-3,
@@ -1101,12 +1100,12 @@
           <div class="glass-card-3 " border-brandCyan/20">
             <div class="space-y-10">
               <div>
-                <div class="text-4xl font-black text-brandCyan mb-2">250+</div>
+                <div class="text-4xl font-black text-brandCyan mb-2"><span class="count-up" data-target="250">0</span>+</div>
                 <div class="text-gray-400 uppercase tracking-widest text-xs font-bold">Projects Delivered</div>
               </div>
               <div class="h-px w-12 bg-white/10 mx-auto"></div>
               <div>
-                <div class="text-4xl font-black text-brandCyan mb-2">8+ Years</div>
+                <div class="text-4xl font-black text-brandCyan mb-2"><span class="count-up" data-target="8">0</span>+ Years</div>
                 <div class="text-gray-400 uppercase tracking-widest text-xs font-bold">Global Experience</div>
               </div>
             </div>
@@ -1617,16 +1616,45 @@
       });
     })();
     (function () {
-      if (window.matchMedia('(min-width: 768px)').matches) return;
-      var cards = document.querySelectorAll('.card-container-3');
-      if (!cards.length || !('IntersectionObserver' in window)) return;
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) entry.target.classList.add('is-in-view');
-          else entry.target.classList.remove('is-in-view');
+      // Tap/Click to Flip Cards Logic
+      const cards = document.querySelectorAll('.card-container-3');
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          card.classList.toggle('flipped');
         });
-      }, { threshold: 0.35, rootMargin: '0px 0px -8% 0px' });
-      cards.forEach(function (c) { io.observe(c); });
+      });
+
+      // Count-up Animation Logic
+      const counters = document.querySelectorAll('.count-up');
+      if (counters.length && 'IntersectionObserver' in window) {
+        const countUpObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const target = entry.target;
+              const endValue = parseInt(target.getAttribute('data-target'));
+              animateCount(target, endValue);
+              countUpObserver.unobserve(target);
+            }
+          });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => countUpObserver.observe(counter));
+      }
+
+      function animateCount(element, endValue) {
+        let startValue = 0;
+        const duration = 2000;
+        const stepTime = Math.abs(Math.floor(duration / endValue));
+        
+        const timer = setInterval(() => {
+          startValue += 1;
+          element.textContent = startValue;
+          if (startValue >= endValue) {
+            clearInterval(timer);
+            element.textContent = endValue;
+          }
+        }, stepTime);
+      }
     })();
   </script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
