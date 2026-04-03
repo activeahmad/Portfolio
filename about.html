@@ -802,20 +802,31 @@
       }
 
       .info-panel {
-        top: auto;
-        bottom: 5%;
-        left: 5%;
-        right: 5%;
-        width: 90%;
-        transform: translateY(20px);
-        padding: 1.5rem;
-        border-left: none;
-        border-top: 1px solid #00FFFF;
+        top: 50%;
+        bottom: auto;
+        left: auto;
+        right: 0;
+        width: 60%;
+        transform: translateY(-50%) translateX(100px);
+        padding: 1.25rem;
+        border-left: 1px solid #00FFFF;
+        border-top: none;
         z-index: 100;
+        background: rgba(0, 0, 0, 0.75);
       }
 
       .info-panel.active {
-        transform: translateY(0);
+        transform: translateY(-50%) translateX(0);
+      }
+
+      .info-panel h2 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .info-panel p {
+        font-size: 0.75rem;
+        line-height: 1.4;
       }
 
       #hero-container {
@@ -1378,7 +1389,7 @@
           group.add(mesh, wire);
 
           group.position.z = -index * 25;
-          group.position.x = isMobile ? (Math.random() - 0.5) * 4 : (Math.random() - 0.5) * 8;
+          group.position.x = isMobile ? (Math.random() - 0.5) * 2 - 2.5 : (Math.random() - 0.5) * 8;
           group.position.y = isMobile ? (Math.random() - 0.5) * 2 : (Math.random() - 0.5) * 4;
 
           scene.add(group);
