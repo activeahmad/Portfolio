@@ -847,22 +847,28 @@
         <a class="nav-link text-white text-sm uppercase tracking-widest font-medium" href="portfolio.html">Portfolio</a>
         <a class="nav-link text-white text-sm uppercase tracking-widest font-medium" href="contact.html">Contact</a>
       </div>
-      <div class="hidden md:flex items-center">
-        <a class="nav-cta-outline text-white px-6 py-2 rounded-sm text-xs uppercase tracking-[0.2em] font-bold"
-          href="#contact">
-          Start a Project
-        </a>
+        <!-- Desktop CTA -->
+        <div class="hidden md:flex items-center flex-shrink-0">
+          <a class="nav-cta-outline text-white px-6 py-2 rounded-sm text-xs uppercase tracking-[0.2em] font-bold"
+            href="#contact">
+            Start a Project
+          </a>
+        </div>
+        <!-- Mobile hamburger -->
+        <button type="button" id="home-nav-toggle" class="md:hidden flex items-center justify-center w-11 h-11 rounded border border-white/25 text-white hover:bg-white/5 transition-colors flex-shrink-0" aria-expanded="false" aria-controls="home-mobile-nav" aria-label="Open menu">
+          <span class="material-symbols-outlined text-2xl" id="home-nav-toggle-icon" aria-hidden="true">menu</span>
+        </button>
       </div>
-    </div>
-    <div class="md:hidden border-t border-white/10">
-      <div class="px-4 py-3 flex items-center justify-between text-[11px] uppercase tracking-[0.2em]">
-        <a class="text-white/80" href="home.html">Home</a>
-        <a class="text-white/80" href="about.html">About</a>
-        <a class="text-white/80" href="portfolio.html">Portfolio</a>
-        <a class="text-white/80" href="contact.html">Contact</a>
+      <div id="home-mobile-nav" class="hidden md:hidden border-t border-white/10 bg-black/90 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col">
+          <a class="nav-link-item" href="home.html">Home</a>
+          <a class="nav-link-item" href="about.html">About</a>
+          <a class="nav-link-item" href="portfolio.html">Portfolio</a>
+          <a class="nav-link-item" href="contact.html">Contact</a>
+          <a class="nav-cta-outline text-white px-4 py-3 rounded-sm text-xs uppercase tracking-[0.2em] font-bold text-center mt-2" href="contact.html">Start a Project</a>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
   <main class="portfolio-page pt-20">
     <section class="portfolio-hero">
@@ -1141,45 +1147,88 @@
   <footer class="bg-brand-black text-white pt-12 pb-10 px-6 md:px-12 lg:px-24 reveal-footer border-t border-white/5"
     data-purpose="main-footer">
     <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">
-        <div class="flex flex-col space-y-2" data-purpose="footer-brand">
-          <h2 class="text-2xl font-bold tracking-tighter uppercase">Abdussalam Ahmad</h2>
-          <p class="text-brand-gray text-sm tracking-widest font-light uppercase">Digital Systems &amp; Automation</p>
-        </div>
-        <nav class="flex flex-col space-y-4" data-purpose="footer-nav">
-          <h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Navigation</h3>
-          <ul class="flex flex-col space-y-3">
-            <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="home.html">Home</a></li>
-            <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="about.html">About</a></li>
-            <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white"
-                href="portfolio.html">Portfolio</a></li>
-            <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white"
-                href="contact.html">Contact</a></li>
-          </ul>
-        </nav>
-        <div class="flex flex-col space-y-4 md:items-end" data-purpose="footer-social">
-          <h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Connect</h3>
-          <ul class="flex flex-col space-y-3 md:items-end">
-            <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">LinkedIn</a></li>
-            <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">Twitter / X</a></li>
-            <li><a class="social-link text-sm font-light text-brand-gray inline-block"
-                href="mailto:contact@example.com">Email</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="pt-8 border-t border-white/10" data-purpose="footer-bottom">
-        <div
-          class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-[10px] tracking-widest text-brand-gray uppercase">
-          <p>© 2026 Abdussalam Ahmad — All rights reserved.</p>
-          <div class="flex space-x-6">
-            <span>Privacy Policy</span>
-            <span>Terms of Service</span>
+        <!-- Top Content Wrapper -->
+        <div class="flex flex-col md:grid md:grid-cols-3 gap-12 md:gap-8 mb-16">
+          <!-- BEGIN: Brand Column -->
+          <div class="flex flex-col space-y-2 mb-8 md:mb-0" data-purpose="footer-brand">
+            <h2 class="text-2xl font-bold tracking-tighter uppercase">Abdussalam Ahmad</h2>
+            <p class="text-brand-gray text-sm tracking-widest font-light uppercase">Digital Systems &amp; Automation</p>
+          </div>
+          <!-- END: Brand Column -->
+          
+          <!-- Wrapper for Navigation and Connect to be side-by-side on mobile -->
+          <div class="grid grid-cols-2 gap-8 md:contents">
+            <!-- BEGIN: Navigation Column -->
+            <nav class="flex flex-col space-y-4" data-purpose="footer-nav">
+              <h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Navigation</h3>
+              <ul class="flex flex-col space-y-3">
+                <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="home.html">Home</a></li>
+                <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white" href="about.html">About</a>
+                </li>
+                <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white"
+                    href="portfolio.html">Portfolio</a></li>
+                <li><a class="nav-link text-sm font-light text-brand-gray hover:text-white"
+                    href="contact.html">Contact</a></li>
+              </ul>
+            </nav>
+            <!-- END: Navigation Column -->
+            <!-- BEGIN: Social Column -->
+            <div class="flex flex-col space-y-4 md:items-end" data-purpose="footer-social">
+              <h3 class="text-[10px] uppercase tracking-[0.3em] text-brand-gray mb-2">Connect</h3>
+              <ul class="flex flex-col space-y-3 md:items-end">
+                <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">LinkedIn</a></li>
+                <li><a class="social-link text-sm font-light text-brand-gray inline-block" href="#">Twitter / X</a></li>
+                <li><a class="social-link text-sm font-light text-brand-gray inline-block"
+                    href="mailto:contact@example.com">Email</a></li>
+              </ul>
+            </div>
+            <!-- END: Social Column -->
           </div>
         </div>
+      <!-- Bottom Copyright Area -->
+        <div class="pt-8 border-t border-white/10" data-purpose="footer-bottom">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-[10px] tracking-widest text-brand-gray uppercase">
+            <p>© 2026 Abdussalam Ahmad — All rights reserved.</p>
+            <div class="flex space-x-6">
+              <span>Privacy Policy</span>
+              <span>Terms of Service</span>
+            </div>
+          </div>
+        </div>
+        <!-- END: Bottom Copyright Area -->
       </div>
-    </div>
-  </footer>
+    </footer>
 
+  <script>
+    (function () {
+      var btn = document.getElementById('home-nav-toggle');
+      var panel = document.getElementById('home-mobile-nav');
+      var icon = document.getElementById('home-nav-toggle-icon');
+      if (!btn || !panel) return;
+      function setOpen(open) {
+        if (open) {
+          panel.classList.remove('hidden');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.setAttribute('aria-label', 'Close menu');
+          if (icon) icon.textContent = 'close';
+        } else {
+          panel.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.setAttribute('aria-label', 'Open menu');
+          if (icon) icon.textContent = 'menu';
+        }
+      }
+      btn.addEventListener('click', function () {
+        setOpen(panel.classList.contains('hidden'));
+      });
+      panel.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          setOpen(false);
+        });
+      });
+    })();
+  </script>
   <script>
     const catFilters = document.querySelectorAll('#category-filters .portfolio-pill');
     const toolFiltersContainer = document.getElementById('tool-filters');
