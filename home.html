@@ -633,8 +633,8 @@
     .home-section {
       position: relative;
       width: 100%;
-      margin-top: 1.5rem;
-      margin-bottom: 1.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
     }
 
     @media (min-width: 768px) {
@@ -684,14 +684,13 @@
 
     @media (max-width: 768px) {
       .hero-container {
-        min-height: 78vh;
+        min-height: 70vh;
         height: auto;
-        padding-top: 7rem;
+        padding-top: 5rem;
+        padding-bottom: 2rem;
       }
 
-      #canvas-0,
-      #canvas-1,
-      .corner-glow {
+      #canvas-1 {
         display: none !important;
       }
 
@@ -776,13 +775,13 @@
       <!-- BEGIN: Content Content Overlay -->
       <div class="relative z-10 px-6 text-center max-w-5xl mx-auto" data-purpose="hero-content">
         <!-- Top Subtle Divider -->
-        <div class="w-12 h-px bg-silverGray/30 mx-auto mb-8"></div>
+        <div class="w-12 h-px bg-silverGray/30 mx-auto mb-6 md:mb-8"></div>
         <!-- Main Headline -->
-        <h1 class="headline-gradient text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+        <h1 class="headline-gradient text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 md:mb-6 leading-tight">
           Luxury Digital Experiences,<br /> Built for the Future
         </h1>
         <!-- Tagline -->
-        <p class="text-silverGray text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto tracking-wide">
+        <p class="text-silverGray text-base sm:text-lg md:text-xl font-light mb-8 md:mb-10 max-w-2xl mx-auto tracking-wide">
           Web design, automation, and AI solutions that convert.
         </p>
         <!-- CTA Button -->
@@ -811,7 +810,7 @@
     <canvas data-purpose="animated-background" id="canvas-1"></canvas>
     <!-- END: Particle Background -->
     <!-- BEGIN: Hero Section -->
-    <main class="content-layer min-h-0 md:min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 py-8 md:py-12 overflow-hidden">
+    <main class="content-layer min-h-0 md:min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 py-6 md:py-12 overflow-hidden">
       <!-- BEGIN: Main Heading -->
       <section class="max-w-5xl w-full text-center mb-8 md:mb-12" data-purpose="hero-header">
         <h1 class="headline-main text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 md:mb-8">
@@ -871,7 +870,7 @@
   </div>
   <div class="section-2 home-section">
     <!-- BEGIN: Brands Section -->
-    <section class="relative flex flex-col justify-center items-center py-8 md:py-12 overflow-hidden bg-black"
+    <section class="relative flex flex-col justify-center items-center py-6 md:py-12 overflow-hidden bg-black"
       data-purpose="trusted-brands-section">
       <!-- BEGIN: Header Content -->
       <div class="relative z-10 text-center mb-8 md:mb-12 px-4 sm:px-6">
@@ -933,7 +932,7 @@
   <div class="section-3 home-section">
     <!-- END: Background Layer -->
     <!-- BEGIN: Main Content -->
-    <main class="relative z-10 py-8 md:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <main class="relative z-10 py-6 md:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <!-- BEGIN: Header Section -->
       <header class="text-center mb-8 md:mb-12" data-purpose="section-header">
         <h1 class="text-3xl sm:text-4xl md:text-7xl font-black tracking-tighter uppercase mb-3 md:mb-4 animate-pulse-slow">
@@ -1129,7 +1128,7 @@
       </div>
     </div>
     <!-- BEGIN: Header -->
-    <header class="relative z-10 mb-8 md:mb-12 text-center px-4">
+    <header class="relative z-10 mb-6 md:mb-12 text-center px-4">
       <span class="block text-cyan-400 text-xs tracking-[0.5em] uppercase mb-3 md:mb-4 opacity-70">Process</span>
       <h2 class="text-3xl sm:text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-2">
         How It Happens
@@ -1138,7 +1137,7 @@
     </header>
     <!-- END: Header -->
     <!-- BEGIN: FlowContainer -->
-    <div class="relative z-10 w-full max-w-6xl mx-auto py-6 md:py-12 px-4 sm:px-6" data-purpose="flow-visualization">
+    <div class="relative z-10 w-full max-w-6xl mx-auto py-4 md:py-12 px-4 sm:px-6" data-purpose="flow-visualization">
       <!-- Horizontal Flow Line -->
       <div class="relative w-full hidden md:block">
         <div class="particle-trail"></div>
@@ -1258,7 +1257,7 @@
     <!-- END: SystemActivitySection -->
   </div>
   <div class="section-6 home-section">
-    <div class="relative flex min-h-screen w-full flex-col items-center justify-center p-3 overflow-hidden">
+    <div class="relative flex min-h-[60vh] md:min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 overflow-hidden">
       <div class="absolute inset-0 z-0 opacity-20">
         <div
           class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]">
@@ -1346,90 +1345,112 @@
     <!-- END: Footer Section -->
   </div>
   <script>
-      (function () {
-        const isMobileOrReduced = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches;
-        if (isMobileOrReduced) {
-          const canvasOff = document.getElementById('canvas-0');
-          if (canvasOff) canvasOff.style.display = 'none';
-          return;
+    (function () {
+      const isMobileOrReduced = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const canvasOff = document.getElementById('canvas-0');
+        if (canvasOff) canvasOff.style.display = 'none';
+        return;
+      }
+      const canvas = document.getElementById('canvas-0');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let mouse = { x: null, y: null, radius: isMobileOrReduced ? 100 : 150 };
+
+      window.addEventListener('mousemove', function (event) {
+        mouse.x = event.x;
+        mouse.y = event.y;
+      });
+
+      window.addEventListener('touchstart', function (event) {
+        if (event.touches.length > 0) {
+          mouse.x = event.touches[0].clientX;
+          mouse.y = event.touches[0].clientY;
         }
-        const canvas = document.getElementById('canvas-0');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouse = { x: null, y: null, radius: 150 };
+      });
 
-        window.addEventListener('mousemove', function (event) {
-          mouse.x = event.x;
-          mouse.y = event.y;
-        });
-
-        function resize() {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
+      window.addEventListener('touchmove', function (event) {
+        if (event.touches.length > 0) {
+          mouse.x = event.touches[0].clientX;
+          mouse.y = event.touches[0].clientY;
         }
-        window.addEventListener('resize', resize);
-        resize();
+      });
 
-        class Particle {
-          constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.baseX = this.x;
-            this.baseY = this.y;
-            this.density = (Math.random() * 30) + 1;
-            this.velocity = {
-              x: (Math.random() - 0.5) * 0.5,
-              y: (Math.random() - 0.5) * 0.5
-            };
-          }
+      window.addEventListener('touchend', function () {
+        mouse.x = null;
+        mouse.y = null;
+      });
 
-          draw() {
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.closePath();
-            ctx.fill();
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
 
-            // Add a small glow to the node
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = 'white';
-          }
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 2 + 1;
+          this.baseX = this.x;
+          this.baseY = this.y;
+          this.density = (Math.random() * 30) + 1;
+          this.velocity = {
+            x: (Math.random() - 0.5) * 0.5,
+            y: (Math.random() - 0.5) * 0.5
+          };
+        }
 
-          update() {
-            // Natural movement
-            this.x += this.velocity.x;
-            this.y += this.velocity.y;
+        draw() {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.fill();
 
-            // Bounce off walls
-            if (this.x > canvas.width || this.x < 0) this.velocity.x *= -1;
-            if (this.y > canvas.height || this.y < 0) this.velocity.y *= -1;
+          // Add a small glow to the node
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = 'white';
+        }
 
-            // Mouse interaction
-            let dx = mouse.x - this.x;
-            let dy = mouse.y - this.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-            let forceDirectionX = dx / distance;
-            let forceDirectionY = dy / distance;
-            let maxDistance = mouse.radius;
-            let force = (maxDistance - distance) / maxDistance;
-            let directionX = forceDirectionX * force * this.density;
-            let directionY = forceDirectionY * force * this.density;
+        update() {
+          // Natural movement
+          this.x += this.velocity.x;
+          this.y += this.velocity.y;
 
-            if (distance < mouse.radius) {
-              this.x -= directionX;
-              this.y -= directionY;
+          // Bounce off walls
+          if (this.x > canvas.width || this.x < 0) this.velocity.x *= -1;
+          if (this.y > canvas.height || this.y < 0) this.velocity.y *= -1;
+
+          // Mouse interaction
+            if (mouse.x !== null && mouse.y !== null) {
+              let dx = mouse.x - this.x;
+              let dy = mouse.y - this.y;
+              let distance = Math.sqrt(dx * dx + dy * dy);
+              let forceDirectionX = dx / distance;
+              let forceDirectionY = dy / distance;
+              let maxDistance = mouse.radius;
+              let force = (maxDistance - distance) / maxDistance;
+              let directionX = forceDirectionX * force * this.density;
+              let directionY = forceDirectionY * force * this.density;
+
+              if (distance < mouse.radius) {
+                this.x -= directionX;
+                this.y -= directionY;
+              }
             }
-          }
         }
+      }
 
-        function init() {
-          particles = [];
-          let numberOfParticles = (canvas.height * canvas.width) / 9000;
-          for (let i = 0; i < numberOfParticles; i++) {
-            particles.push(new Particle());
-          }
+      function init() {
+        particles = [];
+        let particleDensity = isMobileOrReduced ? 18000 : 9000;
+        let numberOfParticles = (canvas.height * canvas.width) / particleDensity;
+        for (let i = 0; i < numberOfParticles; i++) {
+          particles.push(new Particle());
         }
+      }
 
         function connect() {
           let opacityValue = 1;
