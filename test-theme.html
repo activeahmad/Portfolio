@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+        }
+    </script>
+    <style>
+        body {
+            transition: background-color 0.3s ease;
+        }
+        .dark body {
+            background-color: #000;
+        }
+        .light body {
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="text-center">
+        <h1 class="text-2xl font-bold mb-4 text-black dark:text-white">Theme Test</h1>
+        <button id="theme-toggle" class="px-4 py-2 bg-gray-200 dark:bg-gray-800 text-black dark:text-white rounded">
+            Toggle Theme
+        </button>
+        <p class="mt-4 text-black dark:text-white">Current theme: <span id="theme-status">dark</span></p>
+    </div>
+
+    <script>
+        // Initialize theme
+        const theme = localStorage.getItem('theme') || 'dark';
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeStatus = document.getElementById('theme-status');
+        const html = document.documentElement;
+
+        function toggleTheme() {
+            const isDark = html.classList.contains('dark');
+            const newTheme = isDark ? 'light' : 'dark';
+            
+            if (newTheme === 'dark') {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+            
+            localStorage.setItem('theme', newTheme);
+            themeStatus.textContent = newTheme;
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        themeStatus.textContent = localStorage.getItem('theme') || 'dark';
+
+        // Test theme detection function
+        function getParticleColor(opacity) {
+            const isDark = document.documentElement.classList.contains('dark');
+            console.log('Theme detected:', isDark ? 'dark' : 'light');
+            if (isDark) {
+                return `rgba(255, 255, 255, ${opacity})`;
+            } else {
+                return `rgba(0, 0, 0, ${opacity})`;
+            }
+        }
+
+        // Test the function
+        setInterval(() => {
+            console.log('Particle color should be:', getParticleColor(0.8));
+        }, 2000);
+    </script>
+</body>
+</html>

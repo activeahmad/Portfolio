@@ -1,4 +1,4 @@
-﻿/* Performance: GPU acceleration for canvas layers */
+/* Performance: GPU acceleration for canvas layers */
 #particles-js-1, #particle-canvas-0, #particle-canvas-2 {
   position: absolute;
   top: 0; left: 0;
@@ -55,10 +55,18 @@
     }
 
 .headline-gradient {
-      background: linear-gradient(180deg, #FFFFFF 0%, #C0C0C0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  background: linear-gradient(180deg, #1e293b 0%, #64748b 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.dark .headline-gradient {
+  background: linear-gradient(180deg, #FFFFFF 0%, #C0C0C0 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
     .cta-button {
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
@@ -263,6 +271,12 @@
       border-radius: 50%;
       opacity: 0.3;
       animation: float-3-particle linear infinite;
+    }
+    
+    /* Light mode particle colors */
+    .light .particle,
+    :not(.dark) .particle {
+      background: black;
     }
 
     @keyframes float-3-particle {

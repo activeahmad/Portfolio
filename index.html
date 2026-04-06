@@ -3,6 +3,16 @@
 <html lang="en">
 
 <head>
+  <script>
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Control Room - Futuristic Portfolio</title>
@@ -11,6 +21,7 @@
   <!-- Tailwind Custom Configuration -->
   <script>
     tailwind.config = {
+      darkMode: "class",
       theme: {
         extend: {
           colors: {
@@ -40,15 +51,18 @@
 
     body {
       margin: 0;
-      background-color: #020617;
       overflow-x: hidden;
       font-family: 'Inter', sans-serif;
     }
 
     /* Cinematic Lighting & Fog Effect */
     .fog-overlay {
-      background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(2, 6, 23, 0.8) 100%);
+      background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(248, 250, 252, 0.8) 100%);
       pointer-events: none;
+    }
+    
+    html.dark .fog-overlay {
+      background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(2, 6, 23, 0.8) 100%);
     }
 
     /* 3D Scene Container */
@@ -112,7 +126,7 @@
   </style>
 </head>
 
-<body class="bg-deepNavy text-white">
+<body class="bg-slate-50 text-slate-900 dark:bg-deepNavy dark:text-white transition-colors duration-500">
   <!-- BEGIN: ControlRoomSection -->
   <section class="relative min-h-screen w-full flex items-center justify-center scene-container py-20 overflow-hidden"
     id="control-room">
@@ -120,7 +134,7 @@
     <div class="absolute inset-0 z-0">
       <!-- Grid Floor -->
       <div
-        class="absolute bottom-0 w-full h-1/2 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_100%,#000_70%,transparent_100%)] opacity-20">
+        class="absolute bottom-0 w-full h-1/2 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_100%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20">
       </div>
       <!-- Volumetric Fog / Glow -->
       <div class="absolute inset-0 fog-overlay"></div>
@@ -144,11 +158,11 @@
         </div>
         <!-- Main Console Slab -->
         <div
-          class="relative z-20 p-12 rounded-2xl bg-black/40 border border-neonCyan/30 backdrop-blur-xl shadow-[0_0_50px_rgba(0,243,255,0.1)] text-center transform transition-transform duration-500 hover:scale-105"
+          class="relative z-20 p-12 rounded-2xl bg-white/60 dark:bg-black/40 border border-neonCyan/30 backdrop-blur-xl shadow-[0_0_50px_rgba(0,243,255,0.1)] text-center transform transition-transform duration-500 hover:scale-105"
           data-purpose="interactive-console">
           <h2 class="text-xs uppercase tracking-[0.5em] text-neonCyan mb-4 opacity-70">System Command</h2>
           <h1
-            class="text-4xl md:text-6xl font-black tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400">
+            class="text-4xl md:text-6xl font-black tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-slate-700 to-slate-400 dark:from-white dark:to-slate-400">
             PORTFOLIO<br />ACCESS
           </h1>
           <button
@@ -172,7 +186,7 @@
               stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
           </svg>
         </div>
-        <h3 class="font-bold text-sm tracking-widest">WEB DESIGN</h3>
+        <h3 class="font-bold text-sm tracking-widest text-slate-800 dark:text-white">WEB DESIGN</h3>
         <div class="mt-4 flex flex-wrap gap-1 justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">UI/UX</span>
           <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">WebGL</span>
@@ -188,7 +202,7 @@
             <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
           </svg>
         </div>
-        <h3 class="font-bold text-sm tracking-widest">AI SOLUTIONS</h3>
+        <h3 class="font-bold text-sm tracking-widest text-slate-800 dark:text-white">AI SOLUTIONS</h3>
         <div class="mt-4 flex flex-wrap gap-1 justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">LLMs</span>
           <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">Neural Nets</span>
@@ -206,7 +220,7 @@
               stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
           </svg>
         </div>
-        <h3 class="font-bold text-sm tracking-widest">AUTOMATION</h3>
+        <h3 class="font-bold text-sm tracking-widest text-slate-800 dark:text-white">AUTOMATION</h3>
         <div class="mt-4 flex flex-wrap gap-1 justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">CI/CD</span>
           <span class="text-[10px] bg-neonCyan/10 px-2 py-0.5 rounded">Scripts</span>

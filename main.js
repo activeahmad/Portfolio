@@ -1,6 +1,40 @@
 ﻿// Performance: Skip heavy canvas animations on mobile
 var isMobile = window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent);
 
+// Theme-aware particle color function
+function getParticleColor(opacity) {
+  const isDark = document.documentElement.classList.contains('dark');
+  console.log('Particle color check - Dark mode:', isDark, 'Opacity:', opacity);
+  if (isDark) {
+    return `rgba(255, 255, 255, ${opacity})`;
+  } else {
+    return `rgba(0, 0, 0, ${opacity})`; // Black particles for light mode
+  }
+}
+
+// Force particle redraw when theme changes
+function onThemeChange() {
+  // Force all canvases to redraw by triggering resize
+  const canvases = ['particle-canvas-0', 'particles-js-1', 'particle-canvas-2', 'particleCanvas-3', 'particleCanvas-4'];
+  canvases.forEach(canvasId => {
+    const canvas = document.getElementById(canvasId);
+    if (canvas) {
+      const event = new Event('resize');
+      window.dispatchEvent(event);
+    }
+  });
+}
+
+// Listen for theme changes
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+      onThemeChange();
+    }
+  });
+});
+observer.observe(document.documentElement, { attributes: true });
+
 // Performance: rAF-throttled mousemove utility
 var _rafMousePending = false;
 function throttledMouseMove(canvas, cb) {
@@ -48,7 +82,7 @@ const canvas = document.getElementById('particle-canvas-0');
       }
 
       draw() {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fillStyle = getParticleColor('0.8');
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.closePath();
@@ -56,7 +90,8 @@ const canvas = document.getElementById('particle-canvas-0');
         
         // Add a small glow to the node
         ctx.shadowBlur = 10;
-        ctx.shadowColor = 'white';
+        const isDark = document.documentElement.classList.contains('dark');
+        ctx.shadowColor = isDark ? 'white' : 'black';
       }
 
       update() {
@@ -104,7 +139,7 @@ const canvas = document.getElementById('particle-canvas-0');
 
           if (distance < 150) {
             opacityValue = 1 - (distance / 150);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacityValue * 0.2})`;
+            ctx.strokeStyle = getParticleColor(opacityValue * 0.2);
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
@@ -164,7 +199,7 @@ if (!isMobile) { (function() {
         if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
       }
       draw() {
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.fillStyle = getParticleColor(this.opacity);
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -256,7 +291,7 @@ const canvas = document.getElementById('particle-canvas-2');
         if (this.y < 0) this.reset();
       }
       draw() {
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.fillStyle = getParticleColor(this.opacity);
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -325,7 +360,7 @@ const canvas = document.getElementById('particleCanvas-3');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       particles.forEach(p => {
-        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+        ctx.fillStyle = getParticleColor(p.opacity);
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
@@ -415,7 +450,12 @@ if (!isMobile) { (function() {
         }
       }
       draw() {
-        ctx.fillStyle = `rgba(0, 255, 255, ${this.life})`;
+        const isDark = document.documentElement.classList.contains('dark');
+        if (isDark) {
+          ctx.fillStyle = `rgba(0, 255, 255, ${this.life})`;
+        } else {
+          ctx.fillStyle = `rgba(0, 139, 139, ${this.life})`; // Dark cyan for light mode
+        }
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
